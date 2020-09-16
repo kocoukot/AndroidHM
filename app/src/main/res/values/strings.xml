@@ -1,0 +1,12 @@
+
+<resources>
+
+<string name="app_name">AndroidHomeWork</string>
+<string name="licence_agreement">Cогласен с условиями соглашения.</string>
+<string name="login_button_text">login</string>
+<string name="main_text_view">Вход в систему</string>
+<string name="hint_login">Логин</string>
+<string name="hint_password">Пароль</string>
+<string name="success_login">Вход выполнен успешно</string>
+<string name="agreement_needed">Для продолжения необходимо отметить согласие с условиями</string>
+</resources>
