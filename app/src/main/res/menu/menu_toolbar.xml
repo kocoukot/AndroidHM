@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_1"
+        android:title="@string/action_1" />
+    <item
+        android:id="@+id/action_2"
+        android:title="@string/action_2"
+        android:icon="@drawable/ic_send_black_24dp"
+        android:iconTint="@color/whiteColor"
+        app:showAsAction="ifRoom"
+        app:iconTint="@color/whiteColor"/>
+    <item
+        android:id="@+id/action_3"
+        android:icon="@drawable/ic_attachment_black_24dp"
+        android:iconTint="@color/whiteColor"
+        android:title="@string/action_3"
+        app:iconTint="@color/whiteColor"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/searchToolBar"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="@string/search"
+        app:showAsAction="ifRoom|collapseActionView"
+        android:iconTint="@color/whiteColor"
+        app:iconTint="@color/whiteColor"/>
+</menu>
