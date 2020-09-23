@@ -1,12 +1,19 @@
-
 <resources>
 
-<string name="app_name">AndroidHomeWork</string>
-<string name="licence_agreement">Cогласен с условиями соглашения.</string>
-<string name="login_button_text">login</string>
-<string name="main_text_view">Вход в систему</string>
-<string name="hint_login">Логин</string>
-<string name="hint_password">Пароль</string>
-<string name="success_login">Вход выполнен успешно</string>
-<string name="agreement_needed">Для продолжения необходимо отметить согласие с условиями</string>
+    <string name="app_name">AndroidHomeWork</string>
+    <string name="licence_agreement">Cогласен с условиями соглашения.</string>
+    <string name="login_button_text">login</string>
+    <string name="main_text_view">Вход в систему</string>
+    <string name="hint_login">Логин</string>
+    <string name="hint_password">Пароль</string>
+    <string name="success_login">Вход выполнен успешно</string>
+    <string name="agreement_needed">Для продолжения необходимо отметить согласие с условиями</string>
+    <string name="big_text">Лицензио́нный договор — средство «распоряжения исключительным правом»; гражданско-правовой договор, по которому «одна сторона — обладатель исключительного права на результат интеллектуальной деятельности или на средство индивидуализации (лицензиар) — предоставляет или обязуется предоставить другой стороне (лицензиату) право использования такого результата или средства в предусмотренных образцом лицензионного договора пределах.».[2] Следовательно, в лицензионном договоре могут предоставляться авторские, патентные, смежные, а также другие права.</string>
+    <string name="action_1">Action_1</string>
+    <string name="action_2">Action_2</string>
+    <string name="action_3">Action_3</string>
+    <string name="search">Search</string>
+
+
+
 </resources>
