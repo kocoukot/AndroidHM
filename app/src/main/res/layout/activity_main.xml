@@ -21,7 +21,7 @@
         app:menu="@menu/menu_toolbar"
         app:navigationIcon="@drawable/ic_arrow_back_black_24dp"
         app:title="Enter System"
-        app:layout_scrollFlags="scroll|enterAlways">
+        app:layout_scrollFlags="scroll">
 
     </androidx.appcompat.widget.Toolbar>
 

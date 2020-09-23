@@ -24,7 +24,7 @@
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         android:icon="@drawable/ic_search_black_24dp"
         android:title="@string/search"
-        app:showAsAction="ifRoom|collapseActionView"
+        app:showAsAction="always|collapseActionView"
         android:iconTint="@color/whiteColor"
         app:iconTint="@color/whiteColor"/>
 </menu>
