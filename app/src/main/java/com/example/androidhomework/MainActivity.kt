@@ -5,30 +5,37 @@ import android.os.Bundle
 import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.annotation.MainThread
 import androidx.appcompat.widget.SearchView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+    private var state: FormState = FormState(valid = true, message = "")
+    private val KEY_PARC = "ParcKey"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-
+        Log.println(Log.VERBOSE,"Lifecircle", "Created")
 
         initToolBar()
-
-
-
-
         Glide.with(this)
             .load("https://img.drive.ru/i/0/597705fdec05c4b315000004.jpg")
             .into(imageViewHead)
+
+        if (savedInstanceState != null){
+            state = savedInstanceState.getParcelable<FormState>(KEY_PARC) ?: error("Unexpected state")
+            errorUpdate()
+        }
 
         loginEditText.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
@@ -51,13 +58,10 @@ class MainActivity : AppCompatActivity() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 buttonStatusCheck()
             }
-
         })
-
     }
 
-
-    fun initToolBar(){
+    fun initToolBar() {
         toolBar.setNavigationOnClickListener {
             Toast.makeText(this, "Back", Toast.LENGTH_SHORT).show()
         }
@@ -76,17 +80,14 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 else -> false
-
             }
         }
 
         val searchItem = toolBar.menu.findItem(R.id.searchToolBar)
-        searchItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener{
+        searchItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
             override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
-
                 toastShow("Expanded")
                 return true
-
             }
 
             override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
@@ -95,7 +96,8 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        (searchItem.actionView as SearchView).setOnQueryTextListener( object: SearchView.OnQueryTextListener{
+        (searchItem.actionView as SearchView).setOnQueryTextListener(object :
+            SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 toastShow("Submitted search $query")
                 return true
@@ -103,16 +105,24 @@ class MainActivity : AppCompatActivity() {
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 toastShow("New text $newText")
-               return true
+                return true
             }
-
         })
-
     }
 
     fun buttonStatusCheck() {
-        loginButton.isEnabled =
-            loginEditText.text.isNotEmpty() && pasEditText.text.isNotEmpty() && agreementCheckBox.isChecked
+        if (loginEditText.text.isNotEmpty() && pasEditText.text.isNotEmpty() && agreementCheckBox.isChecked){
+            state.valid = true
+            state.message = ""
+        } else {
+            state.valid = false
+            state.message = "Не введен логин и(или) пароль и(или) нет согласия"
+        }
+
+    }
+
+    private fun errorUpdate(){
+        textView2.text = state.message
     }
 
     fun onAgreement(view: View) {
@@ -120,20 +130,30 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onLogin(view: View) {
-        val bar = ProgressBar(this).apply {
-            LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-            )
+        buttonStatusCheck()
+        errorUpdate()
+        if (state.valid) {
+            val bar = ProgressBar(this).apply {
+                ConstraintLayout.LayoutParams(
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT
+                )
+            }
+            parentContainer.addView(bar)
+            viewDisable(false)
+            Handler().postDelayed({
+                viewDisable(true)
+                toastShow("Вход выполнен успешно")
+                parentContainer.removeView(bar)
+            }, 2000)
         }
-        parentContainer.addView(bar)
-        viewDisable(false)
-        Handler().postDelayed({
-            viewDisable(true)
-            toastShow((R.string.success_login).toString())
-            parentContainer.removeView(bar)
-        }, 2000)
     }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelable(KEY_PARC, state)
+    }
+
 
     private fun viewDisable(onOff: Boolean) {
         for (b in arrayOf(loginEditText, pasEditText, agreementCheckBox, loginButton)) {
@@ -143,6 +163,36 @@ class MainActivity : AppCompatActivity() {
 
     private fun toastShow(text: String) {
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.println(Log.DEBUG,"Lifecircle", "Started")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.println(Log.INFO,"Lifecircle", "Resumed")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.println(Log.ERROR,"Lifecircle", "Paused")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.println(Log.ASSERT,"Lifecircle", "Stoped")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.println(Log.WARN,"Lifecircle", "Destroyed")
+
+    }
+
+    fun onANR(view: View) {
+    Thread.sleep(20000)
     }
 
 }
