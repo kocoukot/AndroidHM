@@ -1,11 +1,14 @@
 package com.example.androidhomework
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.util.Patterns
 import android.view.MenuItem
 import android.view.View
 import android.widget.LinearLayout
@@ -17,6 +20,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.regex.Pattern
 
 class MainActivity : AppCompatActivity() {
     private var state: FormState = FormState(valid = true, message = "")
@@ -111,10 +115,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun buttonStatusCheck() {
-        if (loginEditText.text.isNotEmpty() && pasEditText.text.isNotEmpty() && agreementCheckBox.isChecked){
+        if (loginEditText.text.isNotEmpty() && pasEditText.text.isNotEmpty() && agreementCheckBox.isChecked && Patterns.EMAIL_ADDRESS.matcher(loginEditText.text).matches()){
             state.valid = true
+            loginButton.isEnabled= true
             state.message = ""
         } else {
+            loginButton.isEnabled= false
             state.valid = false
             state.message = "Не введен логин и(или) пароль и(или) нет согласия"
         }
@@ -130,22 +136,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onLogin(view: View) {
+        val activityClass = SecondActivity::class.java
+        val intent = Intent(this, activityClass)
+
         buttonStatusCheck()
         errorUpdate()
         if (state.valid) {
-            val bar = ProgressBar(this).apply {
-                ConstraintLayout.LayoutParams(
-                    ConstraintLayout.LayoutParams.WRAP_CONTENT,
-                    ConstraintLayout.LayoutParams.WRAP_CONTENT
-                )
-            }
-            parentContainer.addView(bar)
-            viewDisable(false)
-            Handler().postDelayed({
-                viewDisable(true)
-                toastShow("Вход выполнен успешно")
-                parentContainer.removeView(bar)
-            }, 2000)
+            startActivity(intent)
         }
     }
 
@@ -165,34 +162,10 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
     }
 
-    override fun onStart() {
-        super.onStart()
-        Log.println(Log.DEBUG,"Lifecircle", "Started")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.println(Log.INFO,"Lifecircle", "Resumed")
-    }
-
     override fun onPause() {
         super.onPause()
+        this.finish()
         Log.println(Log.ERROR,"Lifecircle", "Paused")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.println(Log.ASSERT,"Lifecircle", "Stoped")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.println(Log.WARN,"Lifecircle", "Destroyed")
-
-    }
-
-    fun onANR(view: View) {
-    Thread.sleep(20000)
     }
 
 }

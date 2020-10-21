@@ -4,7 +4,7 @@
     <string name="licence_agreement">Cогласен с условиями соглашения.</string>
     <string name="login_button_text">login</string>
     <string name="main_text_view">Вход в систему</string>
-    <string name="hint_login">Логин</string>
+    <string name="hint_login">E-mail</string>
     <string name="hint_password">Пароль</string>
     <string name="success_login">Вход выполнен успешно</string>
     <string name="agreement_needed">Для продолжения необходимо отметить согласие с условиями</string>
@@ -13,7 +13,6 @@
     <string name="action_2">Action_2</string>
     <string name="action_3">Action_3</string>
     <string name="search">Search</string>
-
 
 
 </resources>
