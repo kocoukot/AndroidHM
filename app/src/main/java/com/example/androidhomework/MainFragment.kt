@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.FragmentTransaction
-import kotlinx.android.synthetic.main.activity_test.*
+//import kotlinx.android.synthetic.main.activity_test.*
 import kotlinx.android.synthetic.main.main_fragment.*
 
 
@@ -19,7 +19,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        retainInstance = true
         parentFragmentManager.beginTransaction().add(R.id.main_Fragment, ListFragment()).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit()
     }
 

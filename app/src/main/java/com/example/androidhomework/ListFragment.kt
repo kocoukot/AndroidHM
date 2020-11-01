@@ -1,6 +1,7 @@
 package com.example.androidhomework
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,25 +22,25 @@ private var list = arrayOf("первый", "второй", "третий", "че
         fun newInstance() = ListFragment()
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         return inflater.inflate(R.layout.list_fragment, container, false)
-
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        val arrayAdapter = ArrayAdapter(this.requireContext(), android.R.layout.simple_list_item_1, list)
+        listViewFragment.onItemClickListener =
+            OnItemClickListener { _, _, position, _ ->
+                parentFragmentManager.beginTransaction().replace(R.id.main_Fragment, DetailFragment.newInstance(list[position])).addToBackStack(list[position]).setTransition(
+                    FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit()
+            }
+        listViewFragment.adapter = arrayAdapter
 
-      val arrayAdapter = ArrayAdapter(this.requireContext(), android.R.layout.simple_list_item_1, list)
-        listViewFragment.setOnItemClickListener(OnItemClickListener { parent, itemClicked, position, id ->
-            parentFragmentManager.beginTransaction().replace(R.id.main_Fragment, DetailFragment.newInstance(list[position])).addToBackStack(list[position]).setTransition(
-                FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit()
-        })
-
-      listViewFragment.adapter = arrayAdapter
     }
+
+
+
 }

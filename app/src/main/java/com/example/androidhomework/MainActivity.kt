@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.os.PersistableBundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -28,16 +29,22 @@ class MainActivity : AppCompatActivity() {
     private var state: FormState = FormState(valid = true, message = "")
     private val KEY_PARC = "ParcKey"
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initToolBar()
-
+        
         if (savedInstanceState != null) {
+            Log.i("module14", "Main activity savedInstanceState != null ")
             state =
                 savedInstanceState.getParcelable<FormState>(KEY_PARC) ?: error("Unexpected state")
+            supportFragmentManager.beginTransaction().remove(LoginFragment()).commit()
+        } else {
+            Log.i("module14", "Main activity savedInstanceState = null")
+            fragmentAdd()
         }
-        fragmentAdd()
     }
 
     private fun fragmentAdd() {
@@ -46,6 +53,10 @@ class MainActivity : AppCompatActivity() {
                 .commit()
     }
 
+    override fun onPause() {
+        super.onPause()
+        onSaveInstanceState(Bundle())
+    }
 
     fun initToolBar() {
         toolBar.setNavigationOnClickListener {

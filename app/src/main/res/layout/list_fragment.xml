@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="600dp"
-    tools:context=".ListFragment">
+    tools:context=".ListFragment"
+    android:id="@+id/listFragment">
 
     <ListView
         android:id="@+id/listViewFragment"
