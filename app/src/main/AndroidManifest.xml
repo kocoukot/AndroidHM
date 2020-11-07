@@ -19,9 +19,9 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:scheme="https"
                     android:host="skillbox.ru"
-                    android:pathPrefix="/education/" />
+                    android:pathPrefix="/education/"
+                    android:scheme="https" />
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity">
