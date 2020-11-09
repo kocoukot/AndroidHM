@@ -1,56 +1,78 @@
 package com.example.androidhomework
 
-import android.content.Context
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.PersistableBundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.util.Log
-import android.util.Patterns
-import android.view.MenuItem
-import android.view.View
-import android.widget.LinearLayout
-import android.widget.ProgressBar
 import android.widget.Toast
-import androidx.annotation.MainThread
-import androidx.appcompat.widget.SearchView
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.constraintlayout.widget.ConstraintSet
-import androidx.core.view.updateLayoutParams
-import com.bumptech.glide.Glide
+import androidx.appcompat.app.AppCompatActivity
+import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.tabs.TabLayoutMediator
+import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.blank_fragment.*
-import java.util.regex.Pattern
+
 
 class MainActivity : AppCompatActivity() {
     private var state: FormState = FormState(valid = true, message = "")
     private val KEY_PARC = "ParcKey"
-
-
+    var checkedItems = booleanArrayOf(true, true, true, true)
+    var filterScreens: List<FragmentScreen> = listOf()
+    private val screens: List<FragmentScreen> = listOf(
+        FragmentScreen(
+            articeTitle = R.string.title_1,
+            textRes = R.string.screen_1,
+            image = R.drawable.image_first,
+            tag = ArticleTag.LISENCE,
+            isShown = true
+        ),
+        FragmentScreen(
+            articeTitle = R.string.title_2,
+            textRes = R.string.screen_2,
+            image = R.drawable.image_second,
+            tag = ArticleTag.SIENCE,
+            isShown = true
+        ),
+        FragmentScreen(
+            articeTitle = R.string.title_3,
+            textRes = R.string.screen_3,
+            image = R.drawable.image_third,
+            tag = ArticleTag.GEOGRAPHY,
+            isShown = true
+        ),
+        FragmentScreen(
+            articeTitle = R.string.title_4,
+            textRes = R.string.screen_4,
+            image = R.drawable.image_fourth,
+            tag = ArticleTag.COLORS,
+            isShown = true
+        )
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initToolBar()
-        
-        if (savedInstanceState != null) {
-            Log.i("module14", "Main activity savedInstanceState != null ")
-            state =
-                savedInstanceState.getParcelable<FormState>(KEY_PARC) ?: error("Unexpected state")
-            supportFragmentManager.beginTransaction().remove(LoginFragment()).commit()
-        } else {
-            Log.i("module14", "Main activity savedInstanceState = null")
-            fragmentAdd()
-        }
+        filterScreens = screens.filter { it.isShown }
+        setViewPager()
     }
 
-    private fun fragmentAdd() {
-            supportFragmentManager.beginTransaction()
-                .add(R.id.frame_Layout, LoginFragment())
-                .commit()
+    private fun setViewPager(){
+        val adapter = ArticleAdapter(filterScreens, this)
+        viewPager.adapter = adapter
+
+        val springDotsIndicator = findViewById<WormDotsIndicator>(R.id.worm_dots_indicator)
+        TabLayoutMediator(tabLayout2, viewPager) { tab, position ->
+            tab.setText(filterScreens[position].articeTitle)
+        }.attach()
+
+        springDotsIndicator.setViewPager2(viewPager)
+        viewPager.setPageTransformer { page, position ->
+            DepthTransformation().transformPage(page, position)
+        }
+
+        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                tabLayout2.getTabAt(position)?.removeBadge()
+            }
+        })
     }
 
     override fun onPause() {
@@ -64,47 +86,17 @@ class MainActivity : AppCompatActivity() {
         }
         toolBar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.action_1 -> {
-                    toastShow("action1")
-                    true
-                }
                 R.id.action_2 -> {
-                    toastShow("action2")
-                    true
-                }
-                R.id.action_3 -> {
-                    toastShow("action3")
+                    showAllert()
                     true
                 }
                 else -> false
             }
         }
+    }
 
-        val searchItem = toolBar.menu.findItem(R.id.searchToolBar)
-        searchItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
-            override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
-                toastShow("Expanded")
-                return true
-            }
-
-            override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
-                toastShow("Collapsed")
-                return true
-            }
-        })
-
-        (searchItem.actionView as SearchView).setOnQueryTextListener(object :
-            SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                toastShow("Submitted search $query")
-                return true
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                toastShow("New text $newText")
-                return true
-            }
-        })
+    private fun showAllert() {
+        FilterDialogFragment( checkedItems, filterScreens).show(supportFragmentManager, "filterFragment")
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -115,5 +107,12 @@ class MainActivity : AppCompatActivity() {
     private fun toastShow(text: String) {
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
     }
+}
 
+
+enum class ArticleTag(var articleTag: String) {
+    LISENCE("Договор"),
+    SIENCE("Наука"),
+    GEOGRAPHY("География"),
+    COLORS("Цвета")
 }
