@@ -1,9 +1,11 @@
 package com.example.androidhomework
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.badge.BadgeDrawable
 import com.google.android.material.tabs.TabLayoutMediator
 import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
 import kotlinx.android.synthetic.main.activity_main.*
@@ -12,55 +14,76 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
     private var state: FormState = FormState(valid = true, message = "")
     private val KEY_PARC = "ParcKey"
-    var checkedItems = booleanArrayOf(true, true, true, true)
-    var filterScreens: List<FragmentScreen> = listOf()
+    private val KEY_BOOLS = "BoolKeys"
+    private val KEY_BADGES = "Badges"
+
+    private var checkedItems = booleanArrayOf(true, true, true, true)
+    private var badges = mutableListOf<Int>()
+
     private val screens: List<FragmentScreen> = listOf(
         FragmentScreen(
             articeTitle = R.string.title_1,
             textRes = R.string.screen_1,
             image = R.drawable.image_first,
             tag = ArticleTag.LISENCE,
-            isShown = true
+            badgeAmount = 0
         ),
         FragmentScreen(
             articeTitle = R.string.title_2,
             textRes = R.string.screen_2,
             image = R.drawable.image_second,
             tag = ArticleTag.SIENCE,
-            isShown = true
+            badgeAmount = 0
         ),
         FragmentScreen(
             articeTitle = R.string.title_3,
             textRes = R.string.screen_3,
             image = R.drawable.image_third,
             tag = ArticleTag.GEOGRAPHY,
-            isShown = true
+            badgeAmount = 0
         ),
         FragmentScreen(
             articeTitle = R.string.title_4,
             textRes = R.string.screen_4,
             image = R.drawable.image_fourth,
             tag = ArticleTag.COLORS,
-            isShown = true
+            badgeAmount = 0
         )
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        if (savedInstanceState != null ){
+            checkedItems = savedInstanceState.getBooleanArray(KEY_BOOLS)!!
+            badges = savedInstanceState.getIntArray(KEY_BADGES)!!.toMutableList()
+            for (s in 0 until screens.count()){
+                screens[s].badgeAmount = badges[s]
+            }
+        }
         initToolBar()
-        filterScreens = screens.filter { it.isShown }
-        setViewPager()
+        onAcceptFilter(checkedItems)
     }
 
-    private fun setViewPager(){
-        val adapter = ArticleAdapter(filterScreens, this)
+    private fun setViewPager(screen: List<FragmentScreen>) {
+        val adapter = ArticleAdapter(screen, this)
         viewPager.adapter = adapter
 
         val springDotsIndicator = findViewById<WormDotsIndicator>(R.id.worm_dots_indicator)
         TabLayoutMediator(tabLayout2, viewPager) { tab, position ->
-            tab.setText(filterScreens[position].articeTitle)
+            tab.setText(screen[position].articeTitle)
         }.attach()
+
+        for (s in 0 until screen.count()) {
+            if (screen[s].badgeAmount != 0) {
+                tabLayout2.getTabAt(s)?.orCreateBadge?.apply {
+
+                    number = screen[s].badgeAmount
+                    badgeGravity = BadgeDrawable.TOP_END
+                }
+            }
+        }
 
         springDotsIndicator.setViewPager2(viewPager)
         viewPager.setPageTransformer { page, position ->
@@ -71,8 +94,29 @@ class MainActivity : AppCompatActivity() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 tabLayout2.getTabAt(position)?.removeBadge()
+                screens[position].badgeAmount = 0
             }
         })
+    }
+
+    fun onAcceptFilter(bools: BooleanArray) {
+        val tagsToShow = mutableListOf<ArticleTag>()
+        val filtered: MutableList<FragmentScreen> = mutableListOf()
+        checkedItems = bools
+        for (b in 0 until bools.count()) {
+            if (bools[b]) {
+                tagsToShow.add(ArticleTag.values()[b])
+            }
+        }
+
+        for (i in 0 until tagsToShow.count()) {
+            for (s in 0 until screens.count()) {
+                if (screens[s].tag == tagsToShow[i]) {
+                    filtered.add(screens[s])
+                }
+            }
+        }
+        setViewPager(filtered)
     }
 
     override fun onPause() {
@@ -80,7 +124,7 @@ class MainActivity : AppCompatActivity() {
         onSaveInstanceState(Bundle())
     }
 
-    fun initToolBar() {
+    private fun initToolBar() {
         toolBar.setNavigationOnClickListener {
             Toast.makeText(this, "Back", Toast.LENGTH_SHORT).show()
         }
@@ -96,12 +140,22 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showAllert() {
-        FilterDialogFragment( checkedItems, filterScreens).show(supportFragmentManager, "filterFragment")
+        FilterDialogFragment(checkedItems).show(supportFragmentManager, "filterFragment")
+    }
+
+    fun setBadge(index: Int, badge: Int){
+        screens[index].badgeAmount = badge
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
+        for (i in 0 until screens.count()){
+            badges.add(screens[i].badgeAmount)
+        }
         outState.putParcelable(KEY_PARC, state)
+        outState.putBooleanArray(KEY_BOOLS,checkedItems)
+        outState.putIntArray(KEY_BADGES,badges.toIntArray())
+
     }
 
     private fun toastShow(text: String) {

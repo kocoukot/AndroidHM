@@ -22,7 +22,7 @@ class ArticleAdapter(
             textRes = screen.textRes,
             image = screen.image,
             tag = screen.tag,
-            isShown = screen.isShown
+            badgeAmount = screen.badgeAmount
         )
     }
 

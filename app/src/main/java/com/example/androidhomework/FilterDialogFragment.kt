@@ -11,10 +11,8 @@ import java.util.*
 
 
 class FilterDialogFragment(
-    private var checkedItems: BooleanArray,
-    private var filteredFragmentList:  List<FragmentScreen>
+    private var checkedItems: BooleanArray
 ) : DialogFragment() {
-var filteredList: MutableList<ArticleTag> = mutableListOf()
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val listTest = ArrayList<String>()
@@ -29,12 +27,7 @@ var filteredList: MutableList<ArticleTag> = mutableListOf()
             }
 
             .setPositiveButton("Применить") { _, _ ->
-                for (i in checkedItems.indices){
-                    if (checkedItems[i]){
-                        Log.i("module15",ArticleTag.values().get(i).toString())
-                        filteredList.add(ArticleTag.values().get(i))
-                    }
-                }
+                (activity as MainActivity).onAcceptFilter(checkedItems)
             }
 
             .setNegativeButton("Отмена") { dialog, _ ->

@@ -8,7 +8,5 @@ data class FragmentScreen(
     @StringRes val textRes: Int,
     @DrawableRes val image: Int,
     val tag: ArticleTag,
-    var isShown: Boolean
-
-
+    var badgeAmount: Int
 )
