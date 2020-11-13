@@ -125,9 +125,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initToolBar() {
-        toolBar.setNavigationOnClickListener {
-            Toast.makeText(this, "Back", Toast.LENGTH_SHORT).show()
-        }
         toolBar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.action_2 -> {

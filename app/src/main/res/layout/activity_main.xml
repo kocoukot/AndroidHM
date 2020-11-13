@@ -71,7 +71,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_scrollFlags="scroll"
         app:menu="@menu/menu_toolbar"
-        app:navigationIcon="@drawable/ic_arrow_back_black_24dp"
         app:title="Articles">
     </androidx.appcompat.widget.Toolbar>
 
