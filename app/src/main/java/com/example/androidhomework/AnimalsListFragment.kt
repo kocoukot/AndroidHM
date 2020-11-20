@@ -49,12 +49,10 @@ class AnimalsListFragment : Fragment(R.layout.list_fragment) {
 
     private var animalAdapter: AnimalAdapter? = null
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         return inflater.inflate(R.layout.list_fragment, container, false)
 
     }
@@ -66,18 +64,13 @@ class AnimalsListFragment : Fragment(R.layout.list_fragment) {
             animalAdapter?.updateAnimals(animalsList)
         } else {
             animalsList = listOf()
-            for (i in 0 until savedInstanceState.getInt(KEY_LIST_SIZE, 0)){
-               val animal = savedInstanceState.getStringArray("animal$i")
-                if (animal!!.size == 3){
-                    val animalCommom = Animals.Common(name = animal[0], imageLink = animal[1], familyType = animal[2])
-                    animalsList =  animalsList  + listOf(animalCommom)
-
-                } else {
-                    val animalRare = Animals.Rare(name = animal[0], imageLink = animal[1], familyType = animal[2],rarity = animal[3])
-                    animalsList = animalsList + listOf(animalRare)
-                }
+            val state = savedInstanceState.getParcelableArray(KEY_LIST_SIZE)
+            for (a in state!!.iterator()) {
+                animalsList = animalsList + listOf(a as Animals)
             }
+
         }
+        listCheckIfEmpty()
         animalAdapter?.updateAnimals(animalsList)
         addFAB.setOnClickListener {
             NewAnimalDialogFragment().show(childFragmentManager, "NewAnimalDialogTag")
@@ -121,27 +114,8 @@ class AnimalsListFragment : Fragment(R.layout.list_fragment) {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putInt(KEY_LIST_SIZE, animalsList.size)
-        for (i in animalsList.indices) {
-            if (animalsList[i].let { it as? Animals.Rare } != null) {
-                val animal = animalsList[i].let { it as? Animals.Rare } ?: error("")
-                outState.putStringArray(
-                    "animal$i",
-                    arrayOf(animal.name, animal.imageLink, animal.familyType, animal.rarity)
-                )
-                continue
-            } else {
-                val animal = animalsList[i].let { it as? Animals.Common } ?: error("")
-                outState.putStringArray(
-                    "animal$i",
-                    arrayOf(animal.name, animal.imageLink, animal.familyType)
-                )
-                continue
-            }
-        }
+        outState.putParcelableArray(KEY_LIST_SIZE, animalsList.toTypedArray())
     }
-
-
 
     override fun onDestroyView() {
         super.onDestroyView()
