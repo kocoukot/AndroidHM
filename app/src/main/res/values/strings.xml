@@ -22,6 +22,12 @@
     <string name="title_2">Научная статья</string>
     <string name="title_3">Амуар</string>
     <string name="title_4">Градиент</string>
+    <string name="dialog_btn_cancel">Отмена</string>
+    <string name="dialog_btn_add">Добавить</string>
+    <string name="dialog_animal_name">Имя животного</string>
+    <string name="dialog_animal_family">Семейство животного</string>
+    <string name="dialog_animal_rarity">Редкость животного</string>
+    <string name="dialog_chackBox_text">Редкое животное</string>
 
 
 </resources>
