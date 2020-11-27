@@ -7,6 +7,7 @@ sealed class Animals: Parcelable {
 
     @Parcelize
     data class Common(
+        val id: Long,
         val name: String,
         val imageLink: String,
         val familyType: String
@@ -14,6 +15,7 @@ sealed class Animals: Parcelable {
 
     @Parcelize
     data class Rare(
+        val id: Long,
         val name: String,
         val imageLink: String,
         val familyType: String,

@@ -2,6 +2,7 @@ package com.example.androidhomework
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
@@ -18,14 +19,33 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         if (savedInstanceState == null){
             supportFragmentManager.beginTransaction()
-                .add(R.id.frameForListFragment, AnimalsListFragment())
+                .add(R.id.frameForListFragment, AnimalsListFragment(0))
                 .commit()
         }
+
+
+
     }
 
     override fun onPause() {
         super.onPause()
         onSaveInstanceState(Bundle())
+    }
+
+    fun onTable(view: View) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.frameForListFragment, AnimalsListFragment(0))
+            .commit()
+    }
+    fun onGrid(view: View) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.frameForListFragment, AnimalsListFragment(1))
+            .commit()
+    }
+    fun onStaggered(view: View) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.frameForListFragment, AnimalsListFragment(2))
+            .commit()
     }
 
 }
