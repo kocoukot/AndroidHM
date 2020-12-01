@@ -1,4 +1,4 @@
-package com.example.androidhomework
+package com.example.androidhomework.animals
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

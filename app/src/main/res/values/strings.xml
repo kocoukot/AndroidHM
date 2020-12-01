@@ -28,6 +28,10 @@
     <string name="dialog_animal_family">Семейство животного</string>
     <string name="dialog_animal_rarity">Редкость животного</string>
     <string name="dialog_chackBox_text">Редкое животное</string>
+    <string name="permission_needed">Для отображения списка локаций необходимо разрешение</string>
+    <string name="permission_button">Разрешить</string>
+    <string name="button_get_location">Получить геопозицию</string>
+    <string name="empty_location_list">Нет локаций для отображения</string>
 
 
 </resources>

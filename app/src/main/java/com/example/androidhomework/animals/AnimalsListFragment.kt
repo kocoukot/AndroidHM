@@ -1,15 +1,15 @@
-package com.example.androidhomework
+package com.example.androidhomework.animals
 
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.GridLayout
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.*
-import com.example.androidhomework.adapters.AnimalAdapter
+import com.example.androidhomework.ItemOffsetDecoration
+import com.example.androidhomework.R
 import jp.wasabeef.recyclerview.animators.FlipInTopXAnimator
 import kotlinx.android.synthetic.main.list_fragment.*
 import kotlin.random.Random
@@ -70,6 +70,7 @@ class AnimalsListFragment(
         super.onActivityCreated(savedInstanceState)
         Log.i("module17",listType.toString() )
         initLIst()
+
         if (savedInstanceState == null ){
             animalAdapter?.items = animalsList
         } else {
@@ -82,9 +83,7 @@ class AnimalsListFragment(
         }
         listCheckIfEmpty()
         animalAdapter?.items = animalsList
-        addFAB.setOnClickListener {
-            NewAnimalDialogFragment().show(childFragmentManager, "NewAnimalDialogTag")
-        }
+
 
     }
 
@@ -104,7 +103,11 @@ class AnimalsListFragment(
             val dividerItemDecoration = DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
             addItemDecoration(dividerItemDecoration)
             addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.HORIZONTAL))
-            addItemDecoration(ItemOffsetDecoration(requireContext()))
+            addItemDecoration(
+                ItemOffsetDecoration(
+                    requireContext()
+                )
+            )
             itemAnimator =  FlipInTopXAnimator()
         }
     }
