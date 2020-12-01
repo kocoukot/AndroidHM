@@ -8,8 +8,9 @@
     android:padding="8dp">
 
 
+
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/common_imageView"
         android:layout_width="100dp"
         android:layout_height="100dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -17,43 +18,32 @@
         tools:src="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/animalName"
+        android:id="@+id/common_animalName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:textColor="#70EC2E"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/animalType"
+        app:layout_constraintBottom_toTopOf="@+id/common_animalType"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@id/imageView"
+        app:layout_constraintStart_toEndOf="@id/common_imageView"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="spread"
         tools:text="Наименование животного" />
 
     <TextView
-        android:id="@+id/animalType"
+        android:id="@+id/common_animalType"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/foodType"
+        app:layout_constraintBottom_toBottomOf="@+id/common_imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/animalName"
+        app:layout_constraintStart_toEndOf="@id/common_imageView"
+        app:layout_constraintTop_toBottomOf="@+id/common_animalName"
         tools:text="Семейство" />
 
-    <TextView
-        android:id="@+id/foodType"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/animalType"
-        tools:text="Редкость" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

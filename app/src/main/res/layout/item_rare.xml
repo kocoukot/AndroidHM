@@ -9,7 +9,7 @@
 
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/rare_imageView"
         android:layout_width="100dp"
         android:layout_height="100dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -17,34 +17,34 @@
         tools:src="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/animalName"
+        android:id="@+id/rare_animalName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:textColor="@color/redColor"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/animalType"
+        app:layout_constraintBottom_toTopOf="@+id/rare_animalType"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@id/imageView"
+        app:layout_constraintStart_toEndOf="@id/rare_imageView"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Наименование животного" />
 
     <TextView
-        android:id="@+id/animalType"
+        android:id="@+id/rare_animalType"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/foodType"
+        app:layout_constraintBottom_toTopOf="@+id/rare_foodType"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/animalName"
+        app:layout_constraintStart_toEndOf="@id/rare_imageView"
+        app:layout_constraintTop_toBottomOf="@+id/rare_animalName"
         tools:text="Семейство" />
 
     <TextView
-        android:id="@+id/foodType"
+        android:id="@+id/rare_foodType"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -52,8 +52,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/animalType"
+        app:layout_constraintStart_toEndOf="@id/rare_imageView"
+        app:layout_constraintTop_toBottomOf="@+id/rare_animalType"
         tools:text="Редкость" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
