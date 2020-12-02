@@ -1,18 +1,6 @@
-package com.example.androidhomework.adapters
+package com.example.androidhomework.animals
 
-import android.view.View
-import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.core.view.isVisible
-import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.example.androidhomework.Animals
-import com.example.androidhomework.R
-import com.example.androidhomework.inflate
-import com.hannesdorfmann.adapterdelegates4.AdapterDelegatesManager
 import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 
 class AnimalAdapter(
