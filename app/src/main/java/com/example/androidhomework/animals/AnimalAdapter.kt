@@ -4,12 +4,14 @@ import androidx.recyclerview.widget.DiffUtil
 import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 
 class AnimalAdapter(
-    private val onItemClicked: (position: Int) -> Unit
+    private val onItemClicked: (name: String, family: String) -> Unit,
+    private val onLongItemClicked: (position: Int) -> Unit
+
 ) : AsyncListDifferDelegationAdapter<Animals>(AnimalsDiffUtilCallBack()) {
 
     init {
-        delegatesManager.addDelegate(RareAnimalDelegate(onItemClicked))
-            .addDelegate(CommonAnimalDelegate(onItemClicked))
+        delegatesManager.addDelegate(RareAnimalDelegate(onItemClicked, onLongItemClicked))
+            .addDelegate(CommonAnimalDelegate(onItemClicked,onLongItemClicked))
     }
 
 

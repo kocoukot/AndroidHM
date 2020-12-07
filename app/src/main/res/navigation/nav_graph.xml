@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/animalsListFragment">
+
+    <fragment
+
+        android:id="@+id/animalsListFragment"
+        android:name="com.example.androidhomework.animals.AnimalsListFragment"
+        android:label="AnimalsListFragment"
+        tools:layout="@layout/list_fragment">
+        <action
+            android:id="@+id/action_animalsListFragment_to_animalDetailFragment"
+            app:destination="@id/animalDetailFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/animalDetailFragment"
+        android:name="com.example.androidhomework.animals.AnimalDetailFragment"
+        android:label="AnimalDetailFragment"
+        tools:layout="@layout/detail_animal_info">
+
+        <argument
+            android:name="animal_name"
+            app:argType="string" />
+        <argument
+            android:name="animal_family"
+            app:argType="string" />
+    </fragment>
+</navigation>

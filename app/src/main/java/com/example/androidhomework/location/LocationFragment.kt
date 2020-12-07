@@ -69,8 +69,7 @@ class LocationFragment : Fragment(R.layout.list_fragment) {
                         val zonedDateTime = LocalDateTime.of(year, month + 1, day, hour, minute)
                             .atZone(ZoneId.systemDefault())
                         locationsList[position].createdAt = zonedDateTime.toInstant()
-                        locationAdapter?.notifyDataSetChanged()
-
+                        locationAdapter?.notifyItemChanged(position)
                     },
                     currentDateTime.hour,
                     currentDateTime.minute, true
