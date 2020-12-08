@@ -7,7 +7,7 @@ import com.example.androidhomework.R
 import kotlinx.android.synthetic.main.detail_animal_info.*
 
 class AnimalDetailFragment:Fragment(R.layout.detail_animal_info) {
-    private val animalRepository = AnimalListRepository()
+    private val animalRepository = AnimalsListRepository()
 
     private val args: AnimalDetailFragmentArgs by navArgs()
 

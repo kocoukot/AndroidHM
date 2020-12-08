@@ -1,6 +1,7 @@
 package com.example.androidhomework.animals
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -62,12 +63,17 @@ class AnimalsListFragment : Fragment(R.layout.list_fragment) {
     }
 
     private fun observeViewModelState() {
-        animalListViewModel.animals().observe(viewLifecycleOwner) { newAnimal ->
+        animalListViewModel.animals.observe(viewLifecycleOwner) { newAnimal ->
             animalAdapter?.items = newAnimal
             emptyListTextView.isVisible = newAnimal.isEmpty()
-
-
         }
+
+        animalListViewModel.showToast
+            .observe(viewLifecycleOwner){
+                Toast.makeText(requireContext(), "Объект удален", Toast.LENGTH_SHORT).show()
+            }
+
+
     }
 
 

@@ -1,4 +1,4 @@
-package com.example.androidhomework
+package com.example.androidhomework.location
 
 import android.content.pm.PackageManager
 import android.os.Bundle
@@ -7,7 +7,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.view.isVisible
-import com.example.androidhomework.location.LocationFragment
+import com.example.androidhomework.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -84,7 +84,8 @@ class MainActivityPermissions : AppCompatActivity() {
 
     private fun ifPermissionGranted() {
         supportFragmentManager.beginTransaction()
-            .add(R.id.frameForListFragment,
+            .add(
+                R.id.frameForListFragment,
                 LocationFragment()
             )
             .commit()

@@ -4,7 +4,7 @@ import android.util.Log
 import kotlin.math.log
 import kotlin.random.Random
 
-class AnimalListRepository {
+class AnimalsListRepository {
 
     private var animalsList = listOf(
         Animals.Rare(
@@ -48,12 +48,7 @@ class AnimalListRepository {
         return animalsList.filterIndexed { index, _ -> index != position }
     }
 
-    fun addAnimalFromDialog(
-        name: String,
-        family: String,
-        rarity: String = "",
-        isRare: Boolean = false
-    ): Animals {
+    fun addAnimalFromDialog( name: String, family: String, rarity: String = "", isRare: Boolean = false): List<Animals> {
         return if (!isRare) {
             val newCommon = Animals.Common(
                 id = Random.nextLong(),
@@ -61,7 +56,7 @@ class AnimalListRepository {
                 imageLink = "",
                 familyType = family
             )
-            (listOf(newCommon) + animalsList).first()
+            (listOf(newCommon) + animalsList)
         } else {
             val newAnimal = Animals.Rare(
                 id = Random.nextLong(),
@@ -70,7 +65,7 @@ class AnimalListRepository {
                 familyType = family,
                 rarity = rarity
             )
-            (listOf(newAnimal) + animalsList).first()
+            (listOf(newAnimal) + animalsList)
         }
     }
 
