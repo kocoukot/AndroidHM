@@ -31,7 +31,7 @@
     <string name="permission_needed">Для отображения списка локаций необходимо разрешение</string>
     <string name="permission_button">Разрешить</string>
     <string name="button_get_location">Получить геопозицию</string>
-    <string name="empty_location_list">Нет локаций для отображения</string>
+    <string name="empty_location_list">Список Пуст</string>
 
 
 </resources>

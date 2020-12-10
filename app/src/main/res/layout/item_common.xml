@@ -20,6 +20,7 @@
     <TextView
         android:id="@+id/common_animalName"
         android:layout_width="0dp"
+        android:textColor="@color/colorAccent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:textSize="20sp"
@@ -37,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:textSize="20sp"
-        android:textAlignment="textEnd"
+        android:textAlignment="textStart"
         app:layout_constraintBottom_toBottomOf="@+id/common_imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

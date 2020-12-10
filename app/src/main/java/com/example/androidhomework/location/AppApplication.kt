@@ -1,4 +1,4 @@
-package com.example.androidhomework
+package com.example.androidhomework.location
 
 import android.app.Application
 import com.jakewharton.threetenabp.AndroidThreeTen

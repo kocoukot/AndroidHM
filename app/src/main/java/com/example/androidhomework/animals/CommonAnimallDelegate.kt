@@ -11,13 +11,14 @@ import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_common.*
 
 class CommonAnimalDelegate(
-    private val onItemClicked: (position: Int) -> Unit
+    private val onItemClicked: (name: String, family: String) -> Unit,
+    private val onLongItemClicked: (position: Int) -> Unit
 ): AbsListItemAdapterDelegate<Animals.Common, Animals, CommonAnimalDelegate.CommonHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup): CommonHolder {
         return CommonHolder(
             parent.inflate(R.layout.item_common),
-            onItemClicked)
+            onItemClicked, onLongItemClicked)
     }
 
     override fun isForViewType(item: Animals, items: MutableList<Animals>, position: Int): Boolean {
@@ -34,12 +35,18 @@ class CommonAnimalDelegate(
 
     class CommonHolder(
         override val containerView: View,
-        onItemClicked: (position: Int) -> Unit
+        onItemClicked: (name: String, family: String) -> Unit,
+        onLongItemClicked: (position: Int) -> Unit
     ) : RecyclerView.ViewHolder(containerView), LayoutContainer {
 
         init {
             containerView.setOnClickListener {
-                onItemClicked(adapterPosition)
+                onItemClicked(common_animalName.text.toString(), common_animalType.text.toString())
+            }
+
+            containerView.setOnLongClickListener {
+                onLongItemClicked(adapterPosition)
+                true
             }
         }
 

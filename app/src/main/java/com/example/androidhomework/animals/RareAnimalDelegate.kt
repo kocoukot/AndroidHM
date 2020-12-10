@@ -2,6 +2,7 @@ package com.example.androidhomework.animals
 
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.androidhomework.R
@@ -11,14 +12,16 @@ import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_rare.*
 
 class RareAnimalDelegate(
-    private val onItemClicked: (position: Int) -> Unit
+    private val onItemClicked: (name: String, family: String) -> Unit,
+    private val onLongItemClicked: (position: Int) -> Unit
+
 ): AbsListItemAdapterDelegate<Animals.Rare, Animals, RareAnimalDelegate.RareHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup): RareHolder {
         return RareHolder(
             parent.inflate(R.layout.item_rare),
-            onItemClicked)
+            onItemClicked,onLongItemClicked)
     }
 
     override fun isForViewType(item: Animals, items: MutableList<Animals>, position: Int): Boolean {
@@ -36,14 +39,22 @@ class RareAnimalDelegate(
 
     class RareHolder(
         override val containerView: View,
-        onItemClicked: (position: Int) -> Unit
+        onItemClicked: (name: String, family: String) -> Unit,
+        onLongItemClicked: (position: Int) -> Unit
+
     ) : RecyclerView.ViewHolder(containerView), LayoutContainer {
 
 
         init {
             containerView.setOnClickListener {
-                onItemClicked(adapterPosition)
+                onItemClicked(rare_animalName.text.toString(), rare_animalType.text.toString())
             }
+
+            containerView.setOnLongClickListener {
+                onLongItemClicked(adapterPosition)
+                true
+            }
+
         }
 
         fun bind(animal: Animals.Rare) {
