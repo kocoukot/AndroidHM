@@ -6,12 +6,34 @@
 
     <fragment
         android:id="@+id/threadingFragment"
+        android:name="com.example.androidhomework.threading.MainMenuFragment"
+        android:label="ThreadingFragment"
+        tools:layout="@layout/fragment_main_menu">
+        <action
+            android:id="@+id/action_threadingFragment_to_threadingFragment3"
+            app:destination="@id/threadingFragment3" />
+        <action
+            android:id="@+id/action_threadingFragment_to_raceConditionFragment"
+            app:destination="@id/raceConditionFragment" />
+        <action
+            android:id="@+id/action_threadingFragment_to_deadlockFragment2"
+            app:destination="@id/deadlockFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/deadlockFragment2"
+        android:name="com.example.androidhomework.threading.DeadlockFragment"
+        android:label="DeadlockFragment"
+        tools:layout="@layout/fragment_deadlock"/>
+    <fragment
+        android:id="@+id/threadingFragment3"
         android:name="com.example.androidhomework.threading.ThreadingFragment"
         android:label="ThreadingFragment"
         tools:layout="@layout/fragment_threading"/>
-
-
-
+    <fragment
+        android:id="@+id/raceConditionFragment"
+        android:name="com.example.androidhomework.threading.RaceConditionFragment"
+        android:label="RaceConditionFragment"
+        tools:layout="@layout/fragment_race_condition"/>
 
 
 </navigation>

@@ -32,6 +32,11 @@
     <string name="permission_button">Разрешить</string>
     <string name="button_get_location">Получить геопозицию</string>
     <string name="empty_location_list">Список Пуст</string>
+    <string name="unsync_count">Unsync </string>
+    <string name="sync_count">sync </string>
+    <string name="movies_list">Movies List</string>
+    <string name="race_condition">Race Condition</string>
+    <string name="dead_lock">Dead Lock</string>
 
 
 </resources>
