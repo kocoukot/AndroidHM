@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph_movie"
+    app:startDestination="@id/threadingFragment">
+
+    <fragment
+        android:id="@+id/threadingFragment"
+        android:name="com.example.androidhomework.threading.MainMenuFragment"
+        android:label="ThreadingFragment"
+        tools:layout="@layout/fragment_main_menu">
+        <action
+            android:id="@+id/action_threadingFragment_to_threadingFragment3"
+            app:destination="@id/threadingFragment3" />
+        <action
+            android:id="@+id/action_threadingFragment_to_raceConditionFragment"
+            app:destination="@id/raceConditionFragment" />
+        <action
+            android:id="@+id/action_threadingFragment_to_deadlockFragment2"
+            app:destination="@id/deadlockFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/deadlockFragment2"
+        android:name="com.example.androidhomework.threading.DeadlockFragment"
+        android:label="DeadlockFragment"
+        tools:layout="@layout/fragment_deadlock"/>
+    <fragment
+        android:id="@+id/threadingFragment3"
+        android:name="com.example.androidhomework.threading.ThreadingFragment"
+        android:label="ThreadingFragment"
+        tools:layout="@layout/fragment_threading"/>
+    <fragment
+        android:id="@+id/raceConditionFragment"
+        android:name="com.example.androidhomework.threading.RaceConditionFragment"
+        android:label="RaceConditionFragment"
+        tools:layout="@layout/fragment_race_condition"/>
+
+
+</navigation>
