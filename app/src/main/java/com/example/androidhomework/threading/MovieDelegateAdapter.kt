@@ -37,6 +37,8 @@ class MovieDelegateAdapter: AbsListItemAdapterDelegate<Movie, Movie, MovieDelega
         fun bind(movie: Movie) {
             movieName.text = movie.title
             movieDate.text = movie.year
+            movieType.text = movie.type
+            movieID.text = movie.movieId
             Glide.with(itemView)
                 .load(movie.poster)
                 .error(R.drawable.ic_sentiment)

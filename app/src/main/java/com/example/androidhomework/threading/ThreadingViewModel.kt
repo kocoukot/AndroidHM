@@ -12,28 +12,30 @@ class ThreadingViewModel : ViewModel() {
     private val moviesRepository = MovieRepository()
 
     private val moviesLiveData = MutableLiveData<List<Movie>>()
-    private val showToastLiveData = SingleLiveEvent<Unit>()
+    private val isLoadingLiveData = MutableLiveData<Boolean>()
+    private val isErrorLiveData = MutableLiveData<Boolean>()
+
 
     val movies: LiveData<List<Movie>>
         get() = moviesLiveData
 
-    val showToast: LiveData<Unit>
-        get() = showToastLiveData
+    val isLoading: LiveData<Boolean>
+        get() = isLoadingLiveData
+
+    val isError: LiveData<Boolean>
+        get() = isErrorLiveData
 
 
-    private val movieIds = listOf(
-        "tt0133093",
-        "tt0137523",
-        "tt0109830",
-        "tt0068646",
-        "tt0167261"
-    )
+    fun requestMovies(movieTitle: String, movieYear: String, movieType: String) {
+        isLoadingLiveData.postValue(true)
 
-    fun requestMovies() {
-        moviesRepository.getMovieByID(movieIds) { movies ->
+        moviesRepository.getMovieByID(movieTitle,movieYear,movieType, { movies ->
+            isLoadingLiveData.postValue(false)
             moviesLiveData.postValue(movies)
-            showToastLiveData.postValue(Unit)
-        }
+        },{
+            Log.d("module21", it.message)
+            isErrorLiveData.postValue(true)
+        })
     }
 
 
