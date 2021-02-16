@@ -28,7 +28,7 @@ class ThreadingViewModel : ViewModel() {
 
     fun requestMovies(movieTitle: String, movieYear: String, movieType: String) {
         isLoadingLiveData.postValue(true)
-
+        isErrorLiveData.postValue(false)
         moviesRepository.getMovieByID(movieTitle,movieYear,movieType, { movies ->
             isLoadingLiveData.postValue(false)
             moviesLiveData.postValue(movies)
@@ -37,6 +37,4 @@ class ThreadingViewModel : ViewModel() {
             isErrorLiveData.postValue(true)
         })
     }
-
-
 }

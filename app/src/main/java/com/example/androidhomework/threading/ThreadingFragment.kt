@@ -25,8 +25,7 @@ class ThreadingFragment : Fragment(R.layout.fragment_threading) {
         super.onActivityCreated(savedInstanceState)
         initList()
         bindViewModels()
-
-
+        progressBar.isVisible = false
     }
 
     private fun initList() {
@@ -86,7 +85,9 @@ class ThreadingFragment : Fragment(R.layout.fragment_threading) {
     private fun errorLoading(isError: Boolean){
         loadingErrorText.isVisible = isError
         tryAgainButton.isVisible = isError
-        progressBar.isVisible = isError.not()
+        if (isError){
+            progressBar.isVisible = isError.not()
+        }
 
     }
 
@@ -100,9 +101,5 @@ class ThreadingFragment : Fragment(R.layout.fragment_threading) {
         moviesListRecyclerView.isVisible = isLoading.not()
         progressBar.isVisible = isLoading
         requestButton.isEnabled = isLoading.not()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
     }
 }
