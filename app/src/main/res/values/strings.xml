@@ -37,6 +37,21 @@
     <string name="movies_list">Movies List</string>
     <string name="race_condition">Race Condition</string>
     <string name="dead_lock">Dead Lock</string>
+    <string name="film_name">Название фильма</string>
+    <string name="film_year">Год фильма</string>
+    <string name="download_button">Загрузить фильмы</string>
+    <string name="try_again">try again</string>
+    <string name="loading_error">loading error</string>
+
+
+    <string-array name="film_types">
+        <item>movie</item>
+        <item>series</item>
+        <item>game</item>
+        <item>not selected</item>
+    </string-array>
+
+
 
 
 </resources>
