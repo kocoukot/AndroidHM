@@ -39,7 +39,7 @@
     <string name="dead_lock">Dead Lock</string>
     <string name="film_name">Название фильма</string>
     <string name="film_year">Год фильма</string>
-    <string name="download_button">Загрузить фильмы</string>
+    <string name="download_button">Загрузить</string>
     <string name="try_again">try again</string>
     <string name="loading_error">loading error</string>
 
