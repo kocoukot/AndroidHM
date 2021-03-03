@@ -26,9 +26,9 @@
         tools:layout="@layout/fragment_deadlock"/>
     <fragment
         android:id="@+id/threadingFragment3"
-        android:name="com.example.androidhomework.threading.ThreadingFragment"
-        android:label="ThreadingFragment"
-        tools:layout="@layout/fragment_threading"/>
+        android:name="com.example.androidhomework.moshi.ThreadingFragmentMoshi"
+        android:label="ThreadingFragmentMoshi"
+        tools:layout="@layout/fragment_moshi"/>
     <fragment
         android:id="@+id/raceConditionFragment"
         android:name="com.example.androidhomework.threading.RaceConditionFragment"

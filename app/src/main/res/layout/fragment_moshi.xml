@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <EditText
+        android:id="@+id/filmNameMoshi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/film_name"
+        android:text="lord"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/requestButtonMoshi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/download_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filmNameMoshi" />
+
+    <TextView
+        android:id="@+id/loadingErrorTextMoshi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:gravity="center"
+        android:text="@string/loading_error"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/requestButtonMoshi" />
+
+    <Button
+        android:id="@+id/tryAgainButtonMoshi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/try_again"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/loadingErrorTextMoshi" />
+
+
+    <ProgressBar
+        android:id="@+id/progressBarMoshi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/requestButtonMoshi" />
+
+
+
+
+
+    <Button
+        android:id="@+id/addRatingButtonMoshi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:text="add rating"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/requestButtonMoshi" />
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/movieInfo"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:visibility="invisible"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/addRatingButtonMoshi">
+
+    <ImageView
+        android:id="@+id/movie_imageViewMoshi"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars" />
+    <TextView
+        android:id="@+id/movieNameMoshi"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/movieDateMoshi"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@id/movie_imageViewMoshi"
+        app:layout_constraintTop_toTopOf="@id/movie_imageViewMoshi"
+        app:layout_constraintVertical_chainStyle="spread"
+        tools:text="Властелин колец" />
+
+    <TextView
+        android:id="@+id/movieDateMoshi"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textAlignment="textStart"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/movieTypeMoshi"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@id/movie_imageViewMoshi"
+        app:layout_constraintTop_toBottomOf="@+id/movieNameMoshi"
+        tools:text="2001" />
+
+
+    <TextView
+        android:id="@+id/movieTypeMoshi"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textAlignment="textStart"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/movieIDMoshi"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@id/movie_imageViewMoshi"
+        app:layout_constraintTop_toBottomOf="@+id/movieDateMoshi"
+        tools:text="movie" />
+
+    <TextView
+        android:id="@+id/movieIDMoshi"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textAlignment="textStart"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/movie_imageViewMoshi"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@id/movie_imageViewMoshi"
+        app:layout_constraintTop_toBottomOf="@+id/movieTypeMoshi"
+        tools:text="ID" />
+
+    <TextView
+        android:id="@+id/movieRatingMoshi"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textAlignment="textStart"
+        android:textSize="18sp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/movie_imageViewMoshi"
+        tools:text="Rating" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
