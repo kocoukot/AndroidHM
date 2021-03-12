@@ -51,7 +51,11 @@
         <item>not selected</item>
     </string-array>
 
-
+    <string name="main_profile">Профиль</string>
+    <string name="main_repositories">Список репозиториев</string>
+    <string name="auth_login">Войти</string>
+    <string name="auth_canceled">Аутентификация не выполнена</string>
 
 
 </resources>
+
