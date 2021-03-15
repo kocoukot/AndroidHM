@@ -40,7 +40,7 @@ class AuthRepository {
                 response != null -> {
                     val accessToken = response.accessToken.orEmpty()
                     SuccessAccessToken.token = accessToken
-                    Log.d("module22",accessToken )
+                    Log.d("module23",accessToken )
                     onComplete()
                 }
                 else -> onError()

@@ -2,6 +2,7 @@ package com.example.androidhomework.gitHub.net
 
 import com.example.androidhomework.gitHub.data.GitUser
 import com.example.androidhomework.gitHub.data.RemoteRepository
+import retrofit2.Call
 import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.PUT
@@ -9,34 +10,37 @@ import retrofit2.http.Path
 
 interface GitHubApi {
     @GET("user")
-    fun searchUsers(): retrofit2.Call<GitUser>
+    suspend fun searchUsers(): GitUser
+
+    @GET("user/following")
+    suspend fun serachFollowing(): List<GitUser>
 
     @GET("repositories")
-    fun searchRepos(): retrofit2.Call<List<RemoteRepository>>
+   suspend fun searchRepos(): List<RemoteRepository>
 
     @GET("repos/{owner}/{name}")
-    fun searchRepoDetailed(
+    suspend fun searchRepoDetailed(
         @Path("owner") owner: String,
         @Path("name") name: String
-        ): retrofit2.Call<RemoteRepository>
+        ): RemoteRepository
 
     @GET("user/starred/{owner}/{repo}")
     fun checkIfStared(
         @Path("owner") owner: String,
         @Path("repo") name: String
-    ): retrofit2.Call<Boolean>
+    ): Call<Boolean>
 
     @PUT("user/starred/{owner}/{repo}")
-    fun starRepo(
+   suspend fun starRepo(
         @Path("owner") owner: String,
         @Path("repo") name: String
-    ): retrofit2.Call<Boolean>
+    ): Call<Boolean>
 
     @DELETE("user/starred/{owner}/{repo}")
-    fun unstarRepo(
+    suspend fun unstarRepo(
         @Path("owner") owner: String,
         @Path("repo") name: String
-    ): retrofit2.Call<Boolean>
+    ): Call<Boolean>
 
 
 }

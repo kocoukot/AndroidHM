@@ -3,6 +3,7 @@
 
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tool="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -62,7 +63,6 @@
             android:layout_marginStart="16dp"
             android:textColor="@color/colorAccent"
             android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/movieDate"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@id/userAvatar"
@@ -106,7 +106,7 @@
             android:layout_marginStart="16dp"
             android:textAlignment="textStart"
             android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/userfollowing"
+            app:layout_constraintBottom_toTopOf="@+id/userFollowing"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@id/userAvatar"
@@ -114,7 +114,7 @@
             tools:text="Followers:" />
 
         <TextView
-            android:id="@+id/userfollowing"
+            android:id="@+id/userFollowing"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -126,6 +126,30 @@
             app:layout_constraintStart_toEndOf="@id/userAvatar"
             app:layout_constraintTop_toBottomOf="@+id/userFollowers"
             tools:text="Following:" />
+
+        <TextView
+            android:id="@+id/userFollowingText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:textAlignment="textStart"
+            android:textSize="26sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/followingRecycleView"
+            app:layout_constraintTop_toBottomOf="@+id/userFollowing"
+            android:text="Users following:" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/followingRecycleView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/userFollowingText"
+            tool:listitem="@layout/item_following_user" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
