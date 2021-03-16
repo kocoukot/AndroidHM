@@ -41,16 +41,17 @@ class CurrentUserViewModel : ViewModel() {
 
 
     fun getCurrentUser() {
-        scope.async {
-            //  try {
+        scope.launch {
+
             isLoadingLiveData.postValue(true)
             isErrorLiveData.postValue(false)
 
-            val gitUser = currentUserRepository.getCurrentUserInfo()
+            val gitUser = async {  currentUserRepository.getCurrentUserInfo() }
+            val following = async {  currentUserRepository.getFollowing() }
 
-            currentUserLiveData.postValue(gitUser)
-            val following = currentUserRepository.getFollowing()
-            followingUsersLiveData.postValue(following)
+            currentUserLiveData.postValue(gitUser.await())
+            followingUsersLiveData.postValue(following.await())
+
             isLoadingLiveData.postValue(false)
         }
     }
