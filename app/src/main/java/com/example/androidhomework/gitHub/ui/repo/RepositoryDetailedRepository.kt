@@ -3,66 +3,48 @@ package com.example.androidhomework.gitHub.ui.repo
 import android.util.Log
 import com.example.androidhomework.gitHub.net.NetworkGit
 import com.example.androidhomework.gitHub.data.RemoteRepository
+import kotlinx.coroutines.suspendCancellableCoroutine
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
 
 class RepositoryDetailedRepository {
 
-    fun getRepo(
+
+    suspend fun getRepo(
         owner: String,
-        name: String,
-        callback: (RemoteRepository) -> Unit,
-        errorCallBack: (e: Throwable) -> Unit
-    ) {
-        NetworkGit.githubApi.searchRepoDetailed(owner, name)
-            .enqueue(object : Callback<RemoteRepository> {
-                override fun onFailure(call: Call<RemoteRepository>, t: Throwable) {
-                    errorCallBack(t)
+        name: String
+    ): RemoteRepository {
+        return NetworkGit.githubApi.searchRepoDetailed(owner, name)
+    }
+
+    suspend fun checkIfStared(
+        owner: String,
+        name: String
+    ): Boolean {
+        return suspendCancellableCoroutine { continuation ->
+            NetworkGit.githubApi.checkIfStared(owner, name).enqueue(object : Callback<Boolean> {
+                override fun onFailure(call: Call<Boolean>, t: Throwable) {
+                    continuation.resumeWithException(t)
                     Log.d("module22", "error message ${t.message}")
                 }
 
-                override fun onResponse(
-                    call: Call<RemoteRepository>,
-                    response: Response<RemoteRepository>
-                ) {
+                override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
                     if (response.isSuccessful) {
-                        response?.body()?.let { callback(it) }
+                        continuation.resume(true)
                     } else {
-                        Log.d("module22", "error response on detailed repo")
+                        Log.d("module22", "error response on check if stared or not stared")
                     }
                 }
 
             })
-
-
+        }
     }
 
-    fun checkIfStared(
-        owner: String,
-        name: String,
-        callback: (Boolean) -> Unit,
-        errorCallBack: (e: Throwable) -> Unit
-    ) {
-        NetworkGit.githubApi.checkIfStared(owner, name).enqueue(object : Callback<Boolean> {
-            override fun onFailure(call: Call<Boolean>, t: Throwable) {
-                errorCallBack(t)
-                Log.d("module22", "error message ${t.message}")
-            }
-
-            override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
-                if (response.isSuccessful) {
-                    callback(true)
-                } else {
-                    callback(false)
-                    Log.d("module22", "error response on check if stared or not stared")
-                }
-            }
-
-        })
-    }
-
-    fun starRepo(
+    suspend fun starRepo(
         owner: String,
         name: String,
         callback: (Boolean) -> Unit,
@@ -71,20 +53,20 @@ class RepositoryDetailedRepository {
         NetworkGit.githubApi.starRepo(owner, name).enqueue(object : Callback<Boolean> {
             override fun onFailure(call: Call<Boolean>, t: Throwable) {
                 errorCallBack(t)
-                Log.d("module22", "error message ${t.message}")
+                Log.d("module23", "error message ${t.message}")
             }
 
             override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
                 if (response.isSuccessful) {
                     callback(true)
                 } else {
-                    Log.d("module22", "error response on check if stared or not stared")
+                    Log.d("module23", "error response on check if stared or not stared")
                 }
             }
         })
     }
 
-    fun unstarRepo(
+    suspend fun unstarRepo(
         owner: String,
         name: String,
         callback: (Boolean) -> Unit,
@@ -93,14 +75,14 @@ class RepositoryDetailedRepository {
         NetworkGit.githubApi.unstarRepo(owner, name).enqueue(object : Callback<Boolean> {
             override fun onFailure(call: Call<Boolean>, t: Throwable) {
                 errorCallBack(t)
-                Log.d("module22", "error message ${t.message}")
+                Log.d("module23", "error message ${t.message}")
             }
 
             override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
                 if (response.isSuccessful) {
-                    callback(true)
+                    callback(false)
                 } else {
-                    Log.d("module22", "error response on check if stared or not stared")
+                    Log.d("module23", "error response on check if stared or not stared")
                 }
             }
         })

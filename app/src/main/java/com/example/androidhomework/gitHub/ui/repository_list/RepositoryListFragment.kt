@@ -45,6 +45,9 @@ class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
         viewModel.isError.observe(viewLifecycleOwner, ::errorLoading)
         viewModel.repos.observe(viewLifecycleOwner) { reposAdapter?.items = it}
         viewModel.requestRepos()
+        reposTryAgainButton.setOnClickListener {
+            viewModel.requestRepos()
+        }
     }
 
     private fun updateLoadingState(isLoading: Boolean) {
