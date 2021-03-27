@@ -123,4 +123,12 @@ dependencies {
 
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineVersion"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineVersion"
+
+
+    //Permission dispetcher
+    def latestversion = '4.8.0'
+    implementation "com.github.permissions-dispatcher:permissionsdispatcher:${latestversion}"
+    kapt "com.github.permissions-dispatcher:permissionsdispatcher-processor:${latestversion}"
+    implementation "com.github.permissions-dispatcher:ktx:1.0.4"
+
 }
