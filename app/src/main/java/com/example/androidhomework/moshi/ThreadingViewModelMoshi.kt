@@ -38,7 +38,7 @@ class ThreadingViewModelMoshi : ViewModel() {
             moviesLiveData.postValue(movies)
             isMovieFound.postValue(true)
         }, {
-            Log.d("module21", it.message)
+            Log.d("module21", it.message!!)
             isErrorLiveData.postValue(true)
         }, {
             isLoadingLiveData.postValue(false)
