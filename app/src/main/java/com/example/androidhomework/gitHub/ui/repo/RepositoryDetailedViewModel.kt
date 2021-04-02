@@ -43,7 +43,7 @@ class RepositoryDetailedViewModel : ViewModel() {
                 repositoryLiveData.postValue(repo)
             } catch (t: Throwable) {
                 isErrorLiveData.postValue(true)
-                Log.d("module23", t.message)
+                Log.d("module23", t.message!!)
             } finally {
                 isLoadingLiveData.postValue(false)
             }
@@ -54,7 +54,7 @@ class RepositoryDetailedViewModel : ViewModel() {
                 val isStared = repositoryListRepository.checkIfStared(owner, name)
                 isStaredLiveData.postValue(isStared)
             } catch (t: Throwable) {
-                Log.d("module23", t.message)
+                Log.d("module23", t.message!!)
             }
         }
     }
@@ -67,7 +67,7 @@ class RepositoryDetailedViewModel : ViewModel() {
                 repositoryListRepository.starRepo(owner, name, {
                     isStaredLiveData.postValue(true)
                 }, {
-                    Log.d("module23", it.message)
+                    Log.d("module23", it.message!!)
                 })
             } catch (t: Throwable) {
                 Log.d("module23", "VM error ${t.message}")
@@ -82,10 +82,10 @@ class RepositoryDetailedViewModel : ViewModel() {
                 repositoryListRepository.unstarRepo(owner, name, {
                     isStaredLiveData.postValue(false)
                 }, {
-                    Log.d("module23", it.message)
+                    Log.d("module23", it.message!!)
                 })
             } catch (t: Throwable) {
-                Log.d("module23", t.message)
+                Log.d("module23", t.message!!)
             }
         }
     }

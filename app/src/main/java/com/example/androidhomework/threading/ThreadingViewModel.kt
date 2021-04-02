@@ -33,7 +33,7 @@ class ThreadingViewModel : ViewModel() {
             isLoadingLiveData.postValue(false)
             moviesLiveData.postValue(movies)
         },{
-            Log.d("module21", it.message)
+            Log.d("module21", it.message!!)
             isErrorLiveData.postValue(true)
         })
     }

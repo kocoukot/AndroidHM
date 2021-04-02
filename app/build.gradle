@@ -5,13 +5,13 @@ apply plugin: "androidx.navigation.safeargs.kotlin"
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     buildToolsVersion "29.0.3"
 
     defaultConfig {
         applicationId "com.example.androidhomework"
         minSdkVersion 27
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
@@ -111,7 +111,6 @@ dependencies {
     def retrofitVersion = '2.9.0'
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
-
     implementation "com.squareup.okhttp3:logging-interceptor:4.8.0"
 
     //AppAuth
@@ -123,4 +122,12 @@ dependencies {
 
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineVersion"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineVersion"
+
+
+    //Permission dispetcher
+    def latestversion = '4.8.0'
+    implementation "com.github.permissions-dispatcher:permissionsdispatcher:${latestversion}"
+    kapt "com.github.permissions-dispatcher:permissionsdispatcher-processor:${latestversion}"
+    implementation "com.github.permissions-dispatcher:ktx:1.0.4"
+
 }
