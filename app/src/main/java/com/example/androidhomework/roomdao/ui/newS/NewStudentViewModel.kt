@@ -20,7 +20,7 @@ class NewStudentViewModel : ViewModel() {
 
 
     fun addStudent(name: String, age: Int, phone: Int,uniAddress: String, uniName: String) {
-        val student = Student(id = 0,name = name,age =  age, gender = "male",phoneNumber =  phone,uniAddress = uniAddress, uniName = uniName)
+        val student = Student(id = 0,name = name,age =  age, gender = "male",phoneNumber =  phone,uniId = 1,uniAddress = uniAddress, uniName = uniName)
         viewModelScope.launch {
             try {
                 studentRepository.addStudent(student)

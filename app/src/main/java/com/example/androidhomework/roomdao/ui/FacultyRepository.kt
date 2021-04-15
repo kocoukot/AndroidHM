@@ -10,8 +10,8 @@ class FacultyRepository {
 
     private val facultyDao = Database.instance.facultyDao()
 
-    suspend fun getAllFaculties(uniName: String): List<Faculties> {
-        return facultyDao.getAllFaculties(uniName)
+    suspend fun getAllFaculties(uniId: Long): List<Faculties> {
+        return facultyDao.getAllFaculties(uniId)
     }
 
     suspend fun addFaculty(faculty: Faculties){

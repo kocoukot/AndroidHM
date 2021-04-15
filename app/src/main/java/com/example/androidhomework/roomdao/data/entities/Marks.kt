@@ -12,7 +12,7 @@ import com.example.androidhomework.roomdao.data.bd.contracts.StudentsContract
 
     foreignKeys = [ForeignKey(
         entity = Student::class,
-        parentColumns = [StudentsContract.Columns.ID],
+        parentColumns = [StudentsContract.Columns.STUDENT_ID],
         childColumns = [MarksContract.Columns.MARK_ID]
     )]
 )

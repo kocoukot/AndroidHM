@@ -20,10 +20,10 @@ class FacultyListViewModel : ViewModel() {
         get() = facultyListLiveData
 
 
-    fun getAllFaculties(uniName: String) {
+    fun getAllFaculties(uniId: Long) {
         viewModelScope.launch {
             try {
-                facultyListLiveData.postValue(facultyRepository.getAllFaculties(uniName))
+                facultyListLiveData.postValue(facultyRepository.getAllFaculties(uniId))
             } catch (t: Throwable) {
                 Log.e("RoomDao", "Error getting faculties", t)
             }

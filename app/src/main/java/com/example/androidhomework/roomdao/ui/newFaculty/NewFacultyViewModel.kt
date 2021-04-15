@@ -21,10 +21,10 @@ class NewFacultyViewModel : ViewModel() {
     val isCreated: LiveData<Unit>
         get() = isCreatedLiveData
 
-
     fun addFaculty(
         facultyName: String,
         facultyAddress: String,
+        uniId:Long,
         uniName: String,
         uniAddress: String
     ) {
@@ -35,6 +35,7 @@ class NewFacultyViewModel : ViewModel() {
             facultyName = facultyName,
             facultyAddress = facultyAddress,
             yearsToLearn = year,
+            facultyUniId = uniId,
             facultyUniName = uniName,
             facultyUniAddress = uniAddress
         )

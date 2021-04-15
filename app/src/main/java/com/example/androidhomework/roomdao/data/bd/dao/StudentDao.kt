@@ -18,7 +18,7 @@ interface StudentDao {
     @Query("SELECT * FROM ${StudentsContract.TABLE_NAME}")
     suspend fun getAllStudentsWithUnis(): List<StudentsWithUnis>
 
-    @Query("SELECT * FROM ${StudentsContract.TABLE_NAME} WHERE ${StudentsContract.Columns.ID} = :id")
+    @Query("SELECT * FROM ${StudentsContract.TABLE_NAME} WHERE ${StudentsContract.Columns.STUDENT_ID} = :id")
     suspend fun getStudentsByID(id: Long): List<Student>
 
 }

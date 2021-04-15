@@ -33,11 +33,13 @@ class UniversityFragment : Fragment(R.layout.fragment_universities) {
             }, { position ->
                 val uniName = viewModel.universityList.value?.get(position)!!.uniName
                 val uniAddress = viewModel.universityList.value?.get(position)!!.uniAddress
-                val actions =
-                    UniversityFragmentDirections.actionUniversityFragmentToFacultyListFragment(
-                        uniName,
-                        uniAddress
-                    )
+                val uniId = viewModel.universityList.value?.get(position)!!.uniId
+                val actions = UniversityFragmentDirections.actionUniversityFragmentToFacultyListFragment(
+                    uniName,
+                    uniAddress,
+                    uniId
+                )
+
                 findNavController().navigate(actions)
             })
         with(studentstListRecycler) {

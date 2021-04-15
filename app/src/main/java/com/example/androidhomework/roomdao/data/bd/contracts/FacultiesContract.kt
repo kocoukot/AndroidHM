@@ -9,6 +9,7 @@ object FacultiesContract {
         const val FACULTY_NAME = "faculty_name"
         const val FACULTY_ADDRESS = "faculty_address"
         const val FACULTY_YEARS_TO_LEARN = "faculty_years_to_learn"
+        const val FACULTY_UNI_ID = "faculty_uni_id"
         const val FACULTY_UNI_NAME = "faculty_uni_name"
         const val FACULTY_UNI_ADDRESS = "faculty_uni_address"
 

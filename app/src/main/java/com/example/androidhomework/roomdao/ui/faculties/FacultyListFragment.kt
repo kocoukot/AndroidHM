@@ -43,7 +43,7 @@ class FacultyListFragment : Fragment(R.layout.fragment_faculties) {
             layoutManager = LinearLayoutManager(requireContext())
         }
         viewModel.facultyList.observe(viewLifecycleOwner) { facultyAdapter?.items = it }
-        viewModel.getAllFaculties(args.uniName)
+        viewModel.getAllFaculties(args.uniId)
 
     }
 
@@ -52,7 +52,8 @@ class FacultyListFragment : Fragment(R.layout.fragment_faculties) {
             val action =
                 FacultyListFragmentDirections.actionFacultyListFragmentToNewFacultyFragment(
                     args.uniName,
-                    args.uniAddress
+                    args.uniAddress,
+                    args.uniId
                 )
             findNavController().navigate(action)
         }

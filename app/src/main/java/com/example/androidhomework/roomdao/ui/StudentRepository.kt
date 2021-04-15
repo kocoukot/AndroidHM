@@ -15,7 +15,7 @@ class StudentRepository {
     }
 
     suspend fun addStudent(student: Student){
-        val uni = University(student.uniName!!,student.uniAddress!!)
+        val uni = University(1,student.uniName!!,student.uniAddress!!)
         uniDao.addUni(listOf(uni))
         studentDao.addStudent(listOf(student))
     }

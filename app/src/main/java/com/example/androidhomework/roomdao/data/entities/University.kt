@@ -8,13 +8,14 @@ import com.example.androidhomework.roomdao.data.bd.contracts.StudentsContract
 import com.example.androidhomework.roomdao.data.bd.contracts.UniContract
 
 @Entity(
-    tableName = UniContract.TABLE_NAME,
-    primaryKeys = [
-        UniContract.Columns.UNI_NAME,
-        UniContract.Columns.UNI_ADDRESS
-    ]
+    tableName = UniContract.TABLE_NAME
+
+
 )
 data class University(
+    @PrimaryKey
+    @ColumnInfo(name = UniContract.Columns.UNI_ID)
+    val uniId: Long,
     @ColumnInfo(name = UniContract.Columns.UNI_NAME)
     val uniName: String,
     @ColumnInfo(name = UniContract.Columns.UNI_ADDRESS)

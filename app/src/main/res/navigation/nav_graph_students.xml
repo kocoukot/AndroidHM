@@ -37,6 +37,9 @@
         <action
             android:id="@+id/action_facultyListFragment_to_newFacultyFragment"
             app:destination="@id/newFacultyFragment" />
+        <argument
+            android:name="uni_id"
+            app:argType="long" />
     </fragment>
 
     <fragment
@@ -51,6 +54,9 @@
         <argument
             android:name="uni_address"
             app:argType="string" />
+        <argument
+            android:name="uni_id"
+            app:argType="long" />
     </fragment>
     <fragment
         android:id="@+id/startRoomDaoFragment"

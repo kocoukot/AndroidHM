@@ -11,8 +11,8 @@ import com.example.androidhomework.roomdao.data.entities.University
 @Dao
 interface FacultyDao {
 
-    @Query("SELECT * FROM ${FacultiesContract.TABLE_NAME} WHERE ${FacultiesContract.Columns.FACULTY_UNI_NAME} = :uniName")
-    suspend fun getAllFaculties(uniName: String): List<Faculties>
+    @Query("SELECT * FROM ${FacultiesContract.TABLE_NAME} WHERE ${FacultiesContract.Columns.FACULTY_UNI_ID} = :uniId")
+    suspend fun getAllFaculties(uniId: Long): List<Faculties>
 
     @Insert (onConflict = OnConflictStrategy.REPLACE)
     suspend fun addFaculty(faculties : List<Faculties>)

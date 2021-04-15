@@ -19,7 +19,7 @@ class NewUniversityViewModel : ViewModel() {
 
 
     fun addUni(name: String, address: String) {
-        val university = University(uniName = name, uniAddress = address)
+        val university = University(uniId = 0, uniName = name, uniAddress = address)
         viewModelScope.launch {
             try {
                 uniRepository.addUni(university)

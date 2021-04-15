@@ -6,12 +6,12 @@ import com.example.androidhomework.roomdao.data.bd.contracts.StudentsContract
 import com.example.androidhomework.roomdao.data.bd.contracts.UniContract
 
 @Entity(
-    primaryKeys = [StudentsContract.Columns.ID, UniContract.Columns.UNI_NAME]
+    primaryKeys = [StudentsContract.Columns.STUDENT_ID, UniContract.Columns.UNI_ID]
 )
 data class StudentUniCrossRef (
-    @ColumnInfo(name = StudentsContract.Columns.ID )
+    @ColumnInfo(name = StudentsContract.Columns.STUDENT_ID )
     val studentId:Long,
-    @ColumnInfo(name = UniContract.Columns.UNI_NAME)
-    val uniName: String
+    @ColumnInfo(name = UniContract.Columns.UNI_ID)
+    val uniId: Long
 )
 

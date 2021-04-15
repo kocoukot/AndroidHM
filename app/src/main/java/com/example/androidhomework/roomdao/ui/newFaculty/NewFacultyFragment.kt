@@ -30,6 +30,7 @@ class NewFacultyFragment : Fragment(R.layout.fragment_new_faculty) {
             viewModel.addFaculty(
                 facultyNameNew.text.toString(),
                 facultyAddressNew.text.toString(),
+                args.uniId,
                 args.uniName,
                 args.uniAddress
             )

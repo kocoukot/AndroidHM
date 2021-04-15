@@ -12,8 +12,8 @@ data class UnisWithStudents(
     @Embedded
     val uni: University,
     @Relation(
-        parentColumn = UniContract.Columns.UNI_NAME,
-        entityColumn = StudentsContract.Columns.ID,
+        parentColumn = UniContract.Columns.UNI_ID,
+        entityColumn = StudentsContract.Columns.STUDENT_ID,
         associateBy = Junction(StudentUniCrossRef::class)
     )
     val students: List<Student>
