@@ -1,5 +1,6 @@
 package com.example.androidhomework.roomdao.ui.newS
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -19,14 +20,15 @@ class NewStudentViewModel : ViewModel() {
         get() = isCreatedLiveData
 
 
-    fun addStudent(name: String, age: Int, phone: Int,uniAddress: String, uniName: String) {
-        val student = Student(id = 0,name = name,age =  age, gender = "male",phoneNumber =  phone,uniId = 1,uniAddress = uniAddress, uniName = uniName)
+    fun addStudent(name: String, age: Int, phone: Int, uniName: String, uniAddress: String) {
         viewModelScope.launch {
             try {
-                studentRepository.addStudent(student)
+                studentRepository.addStudent(name,age, phone, uniName, uniAddress)
+
+             //   studentRepository.addStudent(student, uniName, uniAddress)
                 isCreatedLiveData.postValue(Unit)
             } catch (t: Throwable) {
-
+                Log.e("RoomDao", "Error adding student", t)
             }
         }
 

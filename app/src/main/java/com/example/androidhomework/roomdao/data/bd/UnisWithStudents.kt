@@ -6,6 +6,7 @@ import androidx.room.Relation
 import com.example.androidhomework.roomdao.data.bd.contracts.StudentsContract
 import com.example.androidhomework.roomdao.data.bd.contracts.UniContract
 import com.example.androidhomework.roomdao.data.entities.Student
+import com.example.androidhomework.roomdao.data.entities.StudentUniCrossRef
 import com.example.androidhomework.roomdao.data.entities.University
 
 data class UnisWithStudents(

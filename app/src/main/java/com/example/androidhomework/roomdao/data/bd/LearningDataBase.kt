@@ -4,11 +4,9 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.example.androidhomework.roomdao.data.bd.dao.FacultyDao
 import com.example.androidhomework.roomdao.data.bd.dao.StudentDao
+import com.example.androidhomework.roomdao.data.bd.dao.StudentUniCrossDao
 import com.example.androidhomework.roomdao.data.bd.dao.UniDao
-import com.example.androidhomework.roomdao.data.entities.Faculties
-import com.example.androidhomework.roomdao.data.entities.Marks
-import com.example.androidhomework.roomdao.data.entities.Student
-import com.example.androidhomework.roomdao.data.entities.University
+import com.example.androidhomework.roomdao.data.entities.*
 
 @Database(
     entities = [
@@ -16,7 +14,7 @@ import com.example.androidhomework.roomdao.data.entities.University
         Marks::class,
         University::class,
         Faculties::class,
-    StudentUniCrossRef::class
+        StudentUniCrossRef::class
     ], version = LearningDataBase.DB_VERSION
 )
 abstract class LearningDataBase : RoomDatabase() {
@@ -24,6 +22,7 @@ abstract class LearningDataBase : RoomDatabase() {
     abstract fun studentDao(): StudentDao
     abstract fun uniDao(): UniDao
     abstract fun facultyDao(): FacultyDao
+    abstract fun studentUniCross():StudentUniCrossDao
 
 
     companion object {

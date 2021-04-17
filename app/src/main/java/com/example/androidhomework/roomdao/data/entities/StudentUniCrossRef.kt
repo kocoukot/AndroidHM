@@ -1,4 +1,4 @@
-package com.example.androidhomework.roomdao.data.bd
+package com.example.androidhomework.roomdao.data.entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
