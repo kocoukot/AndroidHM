@@ -33,24 +33,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/studentAgeNew" />
 
-    <EditText
-        android:id="@+id/studentsUniName"
+    <Spinner
+        android:id="@+id/uniSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Наименование университета"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/studentPhoneNew" />
-
-    <EditText
-        android:id="@+id/studentsUniAddress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Адрес Университета"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/studentsUniName" />
-
+        app:layout_constraintTop_toBottomOf="@+id/studentPhoneNew" />
 
     <Button
         android:id="@+id/createButton"
@@ -60,6 +49,6 @@
         android:text="add"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintTop_toBottomOf="@id/studentsUniAddress" />
+        app:layout_constraintTop_toBottomOf="@id/uniSpinner" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

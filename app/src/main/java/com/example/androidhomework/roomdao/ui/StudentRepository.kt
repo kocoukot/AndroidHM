@@ -20,13 +20,9 @@ class StudentRepository {
         name: String,
         age: Int,
         phone: Int,
-        uniName: String,
-        uniAddress: String
+        selectedUni: Int
     ) {
-
-        val uni = University(0, uniName, uniAddress)
-        uniDao.addUni(listOf(uni))
-        val uniId = uniDao.getUniID(uniName, uniAddress)
+        val uniId = uniDao.getAllUnis()[selectedUni].uniId
         val student =
             Student(
                 id = 0,
@@ -37,7 +33,7 @@ class StudentRepository {
                 uniId = uniId
             )
 
-        studentDao.addStudent(listOf(student))
+        studentDao.addStudent(student)
         val studentId = studentDao.getStudentID(name, phone)
         val studentUniCross = StudentUniCrossRef(studentId, uniId)
         studentUniDao.putStudentUniCross(listOf(studentUniCross))

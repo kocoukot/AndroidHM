@@ -7,12 +7,12 @@ import androidx.lifecycle.viewModelScope
 import com.example.androidhomework.animals.SingleLiveEvent
 import com.example.androidhomework.roomdao.data.entities.Student
 import com.example.androidhomework.roomdao.ui.StudentRepository
+import com.example.androidhomework.roomdao.ui.UniversityRepository
 import kotlinx.coroutines.launch
 
 class NewStudentViewModel : ViewModel() {
 
-    private val studentRepository =
-        StudentRepository()
+    private val studentRepository = StudentRepository()
 
     private val isCreatedLiveData = SingleLiveEvent<Unit>()
 
@@ -20,19 +20,14 @@ class NewStudentViewModel : ViewModel() {
         get() = isCreatedLiveData
 
 
-    fun addStudent(name: String, age: Int, phone: Int, uniName: String, uniAddress: String) {
+    fun addStudent(name: String, age: Int, phone: Int, selectedUni: Int){
         viewModelScope.launch {
             try {
-                studentRepository.addStudent(name,age, phone, uniName, uniAddress)
-
-             //   studentRepository.addStudent(student, uniName, uniAddress)
+                studentRepository.addStudent(name,age, phone,selectedUni)
                 isCreatedLiveData.postValue(Unit)
             } catch (t: Throwable) {
                 Log.e("RoomDao", "Error adding student", t)
             }
         }
-
     }
-
-
 }
