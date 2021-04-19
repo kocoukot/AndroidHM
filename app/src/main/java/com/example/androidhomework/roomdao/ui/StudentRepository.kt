@@ -33,8 +33,7 @@ class StudentRepository {
                 uniId = uniId
             )
 
-        studentDao.addStudent(student)
-        val studentId = studentDao.getStudentID(name, phone)
+        val studentId = studentDao.addStudent(student)
         val studentUniCross = StudentUniCrossRef(studentId, uniId)
         studentUniDao.putStudentUniCross(listOf(studentUniCross))
     }

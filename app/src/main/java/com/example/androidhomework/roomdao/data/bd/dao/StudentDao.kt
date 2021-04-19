@@ -13,13 +13,12 @@ interface StudentDao {
     suspend fun getAllStudents(): List<Student>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun addStudent(students: Student)
+    suspend fun addStudent(students: Student): Long
 
     @Query("SELECT * FROM ${StudentsContract.TABLE_NAME}")
     suspend fun getAllStudentsWithUnis(): List<StudentsWithUnis>
 
-    @Query("SELECT * FROM ${StudentsContract.TABLE_NAME} WHERE ${StudentsContract.Columns.STUDENT_ID} = :id")
-    suspend fun getStudentsByID(id: Long): List<Student>
+
 
     @Query("SELECT ${StudentsContract.Columns.STUDENT_ID} FROM ${StudentsContract.TABLE_NAME} WHERE ${StudentsContract.Columns.NAME} = :studName AND ${StudentsContract.Columns.PHONE_NUM} = :studPhone")
     suspend fun getStudentID(studName: String, studPhone: Int): Long
