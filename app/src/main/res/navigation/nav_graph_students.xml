@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_students"
+    app:startDestination="@id/startRoomDaoFragment">
+
+    <fragment
+        android:id="@+id/universityFragment"
+        android:name="com.example.androidhomework.roomdao.ui.universities.UniversityFragment"
+        android:label="UniversityFragment"
+        tools:layout="@layout/fragment_universities">
+        <action
+            android:id="@+id/action_universityFragment_to_newStudentFragment"
+            app:destination="@id/newUniversityFragment" />
+        <action
+            android:id="@+id/action_universityFragment_to_facultyListFragment"
+            app:destination="@id/facultyListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/newUniversityFragment"
+        android:name="com.example.androidhomework.roomdao.ui.newU.NewUniFragment"
+        android:label="NewUviversityFragment"
+        tools:layout="@layout/fragment_new_university"/>
+    <fragment
+        android:id="@+id/facultyListFragment"
+        android:name="com.example.androidhomework.roomdao.ui.faculties.FacultyListFragment"
+        android:label="FacultyListFragment"
+        tools:layout="@layout/fragment_faculties">
+        <argument
+            android:name="uni_name"
+            app:argType="string" />
+        <argument
+            android:name="uni_address"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_facultyListFragment_to_newFacultyFragment"
+            app:destination="@id/newFacultyFragment" />
+        <argument
+            android:name="uni_id"
+            app:argType="long" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/newFacultyFragment"
+        android:name="com.example.androidhomework.roomdao.ui.newFaculty.NewFacultyFragment"
+        android:label="NewFacultyFragment"
+        tools:layout="@layout/fragment_new_faculty"
+        >
+        <argument
+            android:name="uni_name"
+            app:argType="string" />
+        <argument
+            android:name="uni_address"
+            app:argType="string" />
+        <argument
+            android:name="uni_id"
+            app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/startRoomDaoFragment"
+        android:name="com.example.androidhomework.roomdao.ui.StartRoomDaoFragment"
+        android:label="StartRoomDaoFragment"
+        tools:layout="@layout/fragment_roomdao">
+        <action
+            android:id="@+id/action_startRoomDaoFragment_to_universityFragment"
+            app:destination="@id/universityFragment" />
+        <action
+            android:id="@+id/action_startRoomDaoFragment_to_studentListFragment"
+            app:destination="@id/studentListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/studentListFragment"
+        android:name="com.example.androidhomework.roomdao.ui.studentslist.StudentListFragment"
+        android:label="StudentListFragment"
+        tools:layout="@layout/fragment_students">
+        <action
+            android:id="@+id/action_studentListFragment_to_newStudentFragment"
+            app:destination="@id/newStudentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newStudentFragment"
+        android:name="com.example.androidhomework.roomdao.ui.newS.NewStudentFragment"
+        android:label="NewStudentFragment"
+        tools:layout="@layout/fragment_new_student"/>
+
+
+</navigation>
