@@ -3,7 +3,6 @@ package com.example.androidhomework.gitHub.ui.current_user
 import android.util.Log
 import com.example.androidhomework.gitHub.data.GitUser
 import com.example.androidhomework.gitHub.net.NetworkGit
-import kotlinx.coroutines.suspendAtomicCancellableCoroutine
 import kotlinx.coroutines.suspendCancellableCoroutine
 import retrofit2.Call
 import retrofit2.Callback

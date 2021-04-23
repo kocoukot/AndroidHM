@@ -17,7 +17,7 @@
         <action
             android:id="@+id/action_fragmentContactsList_to_fragmentContactDetailed"
             app:destination="@id/fragmentContactDetailed"
-            app:enterAnim="@anim/fragment_fade_enter" />
+             />
     </fragment>
 
     <fragment
