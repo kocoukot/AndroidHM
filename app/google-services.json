@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "134826868329",
+    "project_id": "skillboxnotification",
+    "storage_bucket": "skillboxnotification.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:134826868329:android:34b4ab4b4e7532dee3ecf8",
+        "android_client_info": {
+          "package_name": "com.example.androidhomework"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "134826868329-f9prji4r631m0qra1d81873msqvg7fbr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjkkLc2mZpG9VWZjeKp2XtjPzWllXfLVE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "134826868329-f9prji4r631m0qra1d81873msqvg7fbr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
