@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_videos"
+    app:startDestination="@id/fireBaseFragment">
+    <fragment
+        android:id="@+id/fireBaseFragment"
+        android:name="com.example.androidhomework.notifications.FireBaseFragment"
+        android:label="FireBaseFragment"
+        tools:layout="@layout/fragment_firebase">
+        <action
+            android:id="@+id/action_fireBaseFragment_to_synchronizeFragment"
+            app:destination="@id/synchronizeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/synchronizeFragment"
+        android:name="com.example.androidhomework.notifications.SynchronizeFragment"
+        android:label="SynchronizeFragment"
+        tools:layout="@layout/fragment_synchronize"/>
+</navigation>

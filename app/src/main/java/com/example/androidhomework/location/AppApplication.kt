@@ -3,6 +3,7 @@ package com.example.androidhomework.location
 import android.app.Application
 import android.os.StrictMode
 import com.example.androidhomework.BuildConfig
+import com.example.androidhomework.notifications.NotificationChannels
 import com.example.androidhomework.roomdao.data.bd.Database
 import com.facebook.flipper.android.AndroidFlipperClient
 import com.facebook.flipper.android.utils.FlipperUtils
@@ -17,6 +18,7 @@ class AppApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         AndroidThreeTen.init(this)
+        NotificationChannels.create(this)
 
         StrictMode.setThreadPolicy(
             StrictMode.ThreadPolicy.Builder()
@@ -25,14 +27,15 @@ class AppApplication : Application() {
         SoLoader.init(this, false)
 
 
-
-
         if (FlipperUtils.shouldEnableFlipper(this)) {
             val client = AndroidFlipperClient.getInstance(this)
             client.addPlugin(InspectorFlipperPlugin(this, DescriptorMapping.withDefaults()))
             client.start()
         }
         Database.init(this)
+
+
+
 //
 //        if ( FlipperUtils.shouldEnableFlipper(this)){
 //            AndroidFlipperClient.getInstance(this)
