@@ -1,18 +1,22 @@
-package com.example.androidhomework.threading
+package com.example.androidhomework.threading.ui
 
 import android.os.Bundle
-import android.os.Handler
+
 import android.util.Log
-import android.widget.ArrayAdapter
-import android.widget.Toast
+
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.androidhomework.R
+import com.example.androidhomework.threading.*
 import kotlinx.android.synthetic.main.fragment_threading.*
+import kotlinx.coroutines.flow.map
+
+import kotlinx.coroutines.launch
 
 
 class ThreadingFragment : Fragment(R.layout.fragment_threading) {
@@ -41,41 +45,21 @@ class ThreadingFragment : Fragment(R.layout.fragment_threading) {
     }
 
     private fun bindViewModels() {
-        val adapter = ArrayAdapter.createFromResource(
-            requireContext(), R.array.film_types, android.R.layout.simple_expandable_list_item_1
-        )
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-
-        dropDownMenu.setAdapter(adapter)
-
-
-        requestButton.setOnClickListener {
-
-            val movieTitle = filmNameEditText.text.toString()
-            val movieYear = filmYearEditText.text.toString()
-            val movieType = dropDownMenu.text.toString().let {
-                if (it == "not selected") {
-                    ""
-                } else {
-                    it
+        viewLifecycleOwner.lifecycleScope.launch {
+            val name = filmNameEditText.textChangedFlow()
+            val type = radioMovie.selectedRadioChangedFlow()
+                .map {
+                    when (it){
+                        "Movie" -> MovieType.MOVIE
+                        "Series" -> MovieType.SERIES
+                        else -> MovieType.EPISODE
+                    }
                 }
-            }
-            viewModel.requestMovies(movieTitle, movieYear, movieType)
+
+            viewModel.getMovieFlow(name, type)
         }
 
-        tryAgainButton.setOnClickListener {
 
-            val movieTitle = filmNameEditText.text.toString()
-            val movieYear = filmYearEditText.text.toString()
-            val movieType = dropDownMenu.text.toString().let {
-                if (it == "not selected") {
-                    ""
-                } else {
-                    it
-                }
-            }
-            viewModel.requestMovies(movieTitle, movieYear, movieType)
-        }
 
         viewModel.isLoading.observe(viewLifecycleOwner, ::updateLoadingState)
         viewModel.movies.observe(viewLifecycleOwner) { movieAdapter?.items = it }
@@ -84,9 +68,9 @@ class ThreadingFragment : Fragment(R.layout.fragment_threading) {
 
     private fun errorLoading(isError: Boolean){
         loadingErrorText.isVisible = isError
-        tryAgainButton.isVisible = isError
         if (isError){
             progressBar.isVisible = isError.not()
+            moviesListRecyclerView.isVisible = isError.not()
         }
 
     }
@@ -94,12 +78,8 @@ class ThreadingFragment : Fragment(R.layout.fragment_threading) {
     private fun updateLoadingState(isLoading: Boolean) {
         Log.d("module21", "статус загрузки $isLoading")
         filmNameEditText.isEnabled = isLoading.not()
-        filmYearEditText.isEnabled = isLoading.not()
         loadingErrorText.isVisible = false
-        tryAgainButton.isVisible = false
-        menu.isEnabled = isLoading.not()
         moviesListRecyclerView.isVisible = isLoading.not()
         progressBar.isVisible = isLoading
-        requestButton.isEnabled = isLoading.not()
     }
 }

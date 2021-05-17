@@ -13,90 +13,74 @@
         android:hint="@string/film_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="lord"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/filmYearEditText"
+    <RadioGroup
+        android:id="@+id/radioMovie"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/film_year"
-        android:inputType="number"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/filmNameEditText" />
+        app:layout_constraintTop_toBottomOf="@id/filmNameEditText">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/menu"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Жанр"
-        app:layout_constraintTop_toBottomOf="@id/filmYearEditText">
-
-        <AutoCompleteTextView
-            android:id="@+id/dropDownMenu"
+        <RadioButton
+            android:id="@+id/radio_movie"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="none" />
+            android:layout_marginLeft="24dp"
+            android:text="Movie"
+            android:layout_weight="1" />
 
-    </com.google.android.material.textfield.TextInputLayout>
+        <RadioButton
+            android:id="@+id/radio_series"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:text="Series"
+            android:layout_weight="1" />
 
-    <Button
-        android:id="@+id/requestButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/download_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menu" />
-
+        <RadioButton
+            android:id="@+id/radio_episode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:text="Episode"
+            android:layout_weight="1" />
+    </RadioGroup>
 
     <TextView
         android:id="@+id/loadingErrorText"
-        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
+        android:gravity="center"
         android:text="@string/loading_error"
-        app:layout_constraintTop_toBottomOf="@id/requestButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:visibility="invisible"/>
-
-    <Button
-        android:text="@string/try_again"
-        android:id="@+id/tryAgainButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/loadingErrorText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:visibility="invisible"
-        />
-
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/radioMovie" />
 
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/requestButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="50dp"
         android:visibility="invisible"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/radioMovie" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/moviesListRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:clipToPadding="false"
-
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/requestButton"
+        app:layout_constraintTop_toBottomOf="@+id/radioMovie"
         tool:listitem="@layout/item_movie" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,7 +15,7 @@ object Network {
 
     private const val MOVIE_API_KEY = "3b89ac14"
 
-    fun getMovieCall(movieTitle: String, movieYear: String, movieType: String): Call {
+    fun getMovieCall(movieTitle: String,  movieType: String): Call {
 
         val logging = HttpLoggingInterceptor()
         logging.level = HttpLoggingInterceptor.Level.BODY
@@ -42,7 +42,6 @@ object Network {
             .host("www.omdbapi.com")
             .addQueryParameter("apikey", MOVIE_API_KEY)
             .addQueryParameter("s", movieTitle)
-            .addQueryParameter("y", movieYear)
             .addQueryParameter("type", movieType)
 
             .build()
