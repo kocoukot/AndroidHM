@@ -5,6 +5,7 @@ import android.os.StrictMode
 import com.example.androidhomework.BuildConfig
 import com.example.androidhomework.notifications.NotificationChannels
 import com.example.androidhomework.roomdao.data.bd.Database
+import com.example.androidhomework.threading.db.MovieDatabase
 import com.facebook.flipper.android.AndroidFlipperClient
 import com.facebook.flipper.android.utils.FlipperUtils
 import com.facebook.flipper.plugins.inspector.DescriptorMapping
@@ -32,7 +33,7 @@ class AppApplication : Application() {
             client.addPlugin(InspectorFlipperPlugin(this, DescriptorMapping.withDefaults()))
             client.start()
         }
-        Database.init(this)
+        MovieDatabase.init(this)
 
 
 
