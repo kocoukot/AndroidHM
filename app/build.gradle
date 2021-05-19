@@ -25,6 +25,10 @@ android {
 
     }
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -32,12 +36,12 @@ android {
         }
     }
 
-    compileOptions{
+    compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    kotlinOptions{
+    kotlinOptions {
         jvmTarget = '1.8'
     }
 
@@ -78,8 +82,6 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
     //Navigation
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.2'
-
-
 
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
@@ -145,6 +147,13 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-messaging'
 
+    //View Binding delegate
+    implementation 'com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.4.6'
+    implementation 'com.github.kirich1409:viewbindingpropertydelegate:1.4.6'
+
+
+    // WorkManager
+    implementation 'androidx.work:work-runtime-ktx:2.5.0'
 
 
 }
