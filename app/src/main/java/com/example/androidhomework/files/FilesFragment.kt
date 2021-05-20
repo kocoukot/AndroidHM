@@ -2,22 +2,19 @@ package com.example.androidhomework.files
 
 import android.content.Context
 import android.os.Bundle
-import android.renderscript.ScriptGroup
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.observe
+import androidx.lifecycle.Observer
 import androidx.work.*
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.androidhomework.R
 import com.example.androidhomework.databinding.FragmentFilesBinding
-import kotlinx.android.synthetic.main.animal_dialog.*
+import com.facebook.flipper.core.StateSummary
 import kotlinx.android.synthetic.main.fragment_files.*
-import kotlinx.coroutines.*
-import java.io.File
-import java.util.concurrent.TimeUnit
+
 
 class FilesFragment : Fragment(R.layout.fragment_files) {
 
@@ -26,7 +23,7 @@ class FilesFragment : Fragment(R.layout.fragment_files) {
 
     private val binding by viewBinding(FragmentFilesBinding::bind)
 
-   lateinit var repo: FilesRepository
+    lateinit var repo: FilesRepository
 
     private val sharedPref by lazy {
         requireContext().getSharedPreferences(
@@ -46,7 +43,7 @@ class FilesFragment : Fragment(R.layout.fragment_files) {
 
         WorkManager.getInstance(requireContext())
             .getWorkInfosForUniqueWorkLiveData(FilesRepository.DOWNLOAD_KEY)
-            .observe(viewLifecycleOwner) { handleWorkInfo(it.first()) }
+            .observe(viewLifecycleOwner, Observer { handleWorkInfo(it.first()) })
 
         binding.buttonDownload.setOnClickListener {
             repo.startDownLoad(binding.urlEditText.text.toString())
@@ -58,16 +55,16 @@ class FilesFragment : Fragment(R.layout.fragment_files) {
     }
 
     private fun handleWorkInfo(workInfo: WorkInfo) {
-
         val isFinished = workInfo.state.isFinished
-
         binding.buttonDownload.isEnabled = isFinished
         binding.urlEditText.isEnabled = isFinished
         binding.loadingProgress.isVisible = isFinished.not()
         binding.buttonDownloadCancel.isVisible = isFinished.not()
 
-        if (isFinished) {
-            showToast("work is finished with state ${workInfo.state}")
+        if (workInfo.state == WorkInfo.State.SUCCEEDED) {
+            showToast("file downloaded ")
+        } else if (workInfo.runAttemptCount >= 5) {
+            showToast("file has not downloaded ")
         }
     }
 

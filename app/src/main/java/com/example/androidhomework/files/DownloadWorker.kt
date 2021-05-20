@@ -1,6 +1,7 @@
 package com.example.androidhomework.files
 
 import android.content.Context
+import android.util.Log
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.example.androidhomework.files.data.FilesNetwork
@@ -14,7 +15,6 @@ class DownloadWorker(
 
     override suspend fun doWork(): Result {
         val urlToDownload = inputData.getString(DOWNLOAD_URL_KEY) ?: ""
-        delay(1000)
         return downloadFile(urlToDownload)
     }
 

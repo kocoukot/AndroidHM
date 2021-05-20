@@ -4,9 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.map
-import com.example.androidhomework.moshi.MovieMoshi
-import com.example.androidhomework.moshi.MovieRepositoryMoshi
+
 
 class ThreadingViewModelMoshi : ViewModel() {
 

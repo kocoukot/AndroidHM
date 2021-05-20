@@ -19,7 +19,7 @@ class FilesRepository(
             .build()
 
         val workRequest = OneTimeWorkRequestBuilder<DownloadWorker>()
-            .setBackoffCriteria(BackoffPolicy.LINEAR, 20, TimeUnit.SECONDS)
+            .setBackoffCriteria(BackoffPolicy.LINEAR, 10, TimeUnit.MILLISECONDS)
             .setInputData(workData)
             .setConstraints(workConstraints)
             .build()
