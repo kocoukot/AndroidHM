@@ -1,13 +1,39 @@
 package com.example.androidhomework.files
 
-import android.util.Log
-import com.example.androidhomework.files.data.FilesNetwork
-import okhttp3.ResponseBody
+import android.content.Context
+import androidx.work.*
+import java.util.concurrent.TimeUnit
 
+class FilesRepository(
+    private val context: Context
+) {
 
-class FilesRepository {
+    fun startDownLoad(url: String) {
+        val workData = workDataOf(
+            DownloadWorker.DOWNLOAD_URL_KEY to url
+        )
 
-    suspend fun getFile(url: String): ResponseBody {
-        return FilesNetwork.api.getFile(url)
+        val workConstraints = Constraints.Builder()
+            .setRequiredNetworkType(NetworkType.UNMETERED)
+            .setRequiresBatteryNotLow(true)
+            .build()
+
+        val workRequest = OneTimeWorkRequestBuilder<DownloadWorker>()
+            .setBackoffCriteria(BackoffPolicy.LINEAR, 10, TimeUnit.MILLISECONDS)
+            .setInputData(workData)
+            .setConstraints(workConstraints)
+            .build()
+
+        WorkManager.getInstance(context)
+            .enqueueUniqueWork(DOWNLOAD_KEY, ExistingWorkPolicy.KEEP, workRequest)
     }
+
+    fun cancelDownload() {
+        WorkManager.getInstance(context).cancelUniqueWork(DOWNLOAD_KEY)
+    }
+
+    companion object {
+        const val DOWNLOAD_KEY = "download key"
+    }
+
 }

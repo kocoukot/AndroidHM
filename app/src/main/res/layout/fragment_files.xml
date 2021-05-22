@@ -15,18 +15,28 @@
 
     <Button
         android:id="@+id/buttonDownload"
-        android:text="download"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="download"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/urlEditText" />
 
-    <androidx.core.widget.ContentLoadingProgressBar
-        android:id="@+id/loadingProgress"
+    <Button
+        android:id="@+id/buttonDownloadCancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:visibility="invisible"
+        android:text="cancel download"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonDownload" />
+
+    <ProgressBar
+        android:id="@+id/loadingProgress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
