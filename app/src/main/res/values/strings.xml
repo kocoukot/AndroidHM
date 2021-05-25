@@ -43,6 +43,12 @@
     <string name="try_again">try again</string>
     <string name="loading_error">loading error</string>
 
+    <string name="shop">shop</string>
+    <string name="cart">cart</string>
+    <string name="profile">profile</string>
+    <string name="favorites">favorites</string>
+
+
 
     <string-array name="film_types">
         <item>movie</item>
