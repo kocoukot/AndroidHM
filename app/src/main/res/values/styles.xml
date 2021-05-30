@@ -3,27 +3,35 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+
+        <!-- Primary colors -->
+        <item name="colorPrimary">#283593</item>
+        <item name="colorPrimaryVariant">#5f5fc4</item>
+        <item name="colorOnPrimary">@color/whiteColor</item>
+        <item name="bottomNavigationStyle">@style/BottomNavStyle</item>
+        <!-- Secondary colors -->
+        <item name="colorSecondary">#f57f17</item>
+        <item name="colorSecondaryVariant">#ffb04c</item>
+        <item name="colorOnSecondary">#000000</item>
+
+
+        <item name="colorPrimaryDark">#A64A04</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:statusBarColor">@android:color/holo_red_dark</item>
         <item name="android:listDivider">@drawable/divider</item>
+
+    </style>
+
+    <style name="TextAppearance.MyApp.Headline1" parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="BottomNavStyle" parent="Widget.Design.BottomNavigationView">
+        <item name="backgroundTint">#86AC49</item>
     </style>
 
 
-    <style name="ToolBarStyle">
-        <item name="android:background">@android:color/holo_red_dark</item>
-        <item name="android:elevation">8dp</item>
-        <item name="android:theme">@style/ToolBarTheme</item>
-        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
-    </style>
-
-    <style name="ToolBarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="toolbarNavigationButtonStyle">@style/ToolBarNavigationStyle</item>
-    </style>
-
-
-    <style name="ToolBarNavigationStyle" parent="Widget.AppCompat.Toolbar.Button.Navigation">
-        <item name="tint">@android:color/white</item>
-    </style>
 </resources>
