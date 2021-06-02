@@ -2,15 +2,6 @@
 SkillBox AndroidHM
   SkillBox HomeWork rep
 
-Разметка, views
-Верстка с помощью ConstraintLayout
-Жизненный цикл Activity
-Открытие новых экранов
-Фрагменты
-Работа с ViewPager и диалогами
-Списки
-Списки. Best practices
-Разрешения, работа с датой и временем
 Android jetpack: ViewModel, Navigation
 Многопоточность
 Работа с сетью
